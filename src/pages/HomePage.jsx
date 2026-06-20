@@ -9,6 +9,7 @@ import Impact from '../components/Impact'
 import Careers from '../components/Careers'
 import Contact from '../components/Contact'
 import CtaBanner from '../components/CtaBanner'
+import HomeSeoContent from '../components/HomeSeoContent'
 
 export default function HomePage() {
   return (
@@ -24,6 +25,7 @@ export default function HomePage() {
         <Impact />
         <Careers />
         <Contact />
+        <HomeSeoContent />
         <CtaBanner />
       </div>
     </div>

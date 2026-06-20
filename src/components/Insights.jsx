@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { BookOpen, ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import SectionHeading, { staggerContainer, staggerItem } from './ui/SectionHeading'
-import { insightCategories, getCategoryImage } from '../data/insights'
+import { insightCategories } from '../data/insights'
+import InsightVisual, { getCategoryIcon } from './InsightVisual'
 
 const contentTypes = ['Articles', 'Reports', 'Case Studies', 'Perspectives', 'Industry Research']
 
@@ -23,24 +24,19 @@ export default function Insights() {
           viewport={{ once: true, margin: '-60px' }}
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-14"
         >
-          {insightCategories.map((cat) => (
+          {insightCategories.map((cat) => {
+            const CatIcon = getCategoryIcon(cat.slug)
+            return (
             <motion.div key={cat.slug} variants={staggerItem}>
               <Link
                 to={`/insights/${cat.slug}`}
                 className={`group relative block rounded-2xl border border-gray-100 bg-white overflow-hidden transition-shadow duration-400 hover:shadow-[0_20px_40px_rgba(15,43,92,0.08)] hover:-translate-y-1.5`}
               >
-                <div className="h-36 relative overflow-hidden bg-gray-100">
-                  <img
-                    src={getCategoryImage(cat.slug)}
-                    alt={cat.title}
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy/25 to-transparent" />
-                </div>
+                <InsightVisual categorySlug={cat.slug} variant="card" label="" />
                 <div className="p-6">
                 <div className="flex items-start justify-between mb-4 relative">
-                  <div className="w-11 h-11 rounded-xl bg-white shadow-sm flex items-center justify-center group-hover:shadow-md transition-shadow">
-                    <BookOpen className="text-teal" size={20} />
+                  <div className="w-11 h-11 rounded-xl bg-teal/10 flex items-center justify-center group-hover:bg-teal/15 transition-colors">
+                    <CatIcon className="text-teal" size={20} />
                   </div>
                   <ArrowUpRight
                     size={18}
@@ -56,7 +52,7 @@ export default function Insights() {
                 </div>
               </Link>
             </motion.div>
-          ))}
+          )})}
         </motion.div>
 
         <motion.div

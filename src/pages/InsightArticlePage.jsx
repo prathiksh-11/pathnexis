@@ -5,10 +5,10 @@ import { GridOverlay } from '../components/ui/Effects'
 import {
   getArticle,
   getArticleBody,
-  getArticleImage,
   getArticlesByCategory,
   getCategoryBySlug,
 } from '../data/insights'
+import InsightVisual from '../components/InsightVisual'
 
 export default function InsightArticlePage() {
   const { categorySlug, articleSlug } = useParams()
@@ -35,12 +35,8 @@ export default function InsightArticlePage() {
   return (
     <>
       <section className="relative pt-36 pb-16 md:pt-40 md:pb-20 overflow-hidden mesh-bg">
-        <img
-          src={getArticleImage(articleSlug)}
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover opacity-30"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-dark/95 via-navy/90 to-navy-dark" />
+        <InsightVisual categorySlug={categorySlug} variant="hero" />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-dark/95 via-navy/92 to-navy-dark" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,201,183,0.15),transparent_50%)]" />
         <GridOverlay />
 
@@ -98,11 +94,7 @@ export default function InsightArticlePage() {
             transition={{ delay: 0.1 }}
             className="-mt-24 mb-10 rounded-2xl overflow-hidden border border-gray-100 shadow-xl"
           >
-            <img
-              src={getArticleImage(articleSlug)}
-              alt={article.title}
-              className="w-full h-56 md:h-72 object-cover"
-            />
+            <InsightVisual categorySlug={categorySlug} variant="featured" label={article.type} />
           </motion.div>
 
           <motion.div
@@ -166,13 +158,11 @@ export default function InsightArticlePage() {
                   to={`/insights/${categorySlug}/${item.slug}`}
                   className="group flex flex-col rounded-2xl bg-white border border-gray-100 overflow-hidden hover:border-teal/30 hover:shadow-lg transition-all duration-300"
                 >
-                  <div className="h-36 relative overflow-hidden">
-                    <img
-                      src={getArticleImage(item.slug)}
-                      alt={item.title}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
+                  <InsightVisual
+                    categorySlug={categorySlug}
+                    variant="card"
+                    label={item.type}
+                  />
                   <div className="p-6">
                     <span className="text-[10px] font-semibold uppercase tracking-wide text-teal">
                       {item.type}

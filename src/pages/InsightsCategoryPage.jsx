@@ -3,11 +3,10 @@ import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight, BookOpen, Clock, User } from 'lucide-react'
 import { GridOverlay } from '../components/ui/Effects'
 import {
-  getArticleImage,
   getArticlesByCategory,
   getCategoryBySlug,
-  getCategoryImage,
 } from '../data/insights'
+import InsightVisual from '../components/InsightVisual'
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -39,12 +38,8 @@ export default function InsightsCategoryPage() {
   return (
     <>
       <section className="relative min-h-[45vh] flex items-end overflow-hidden mesh-bg">
-        <img
-          src={getCategoryImage(categorySlug)}
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-navy-dark/95 via-navy/88 to-navy-dark/75" />
+        <InsightVisual categorySlug={categorySlug} variant="hero" />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-dark/92 via-navy/85 to-navy-dark/80" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_30%,rgba(0,201,183,0.18),transparent_55%)]" />
         <GridOverlay />
 
@@ -91,19 +86,7 @@ export default function InsightsCategoryPage() {
                 to={`/insights/${categorySlug}/${featured.slug}`}
                 className="group grid lg:grid-cols-2 gap-0 rounded-3xl overflow-hidden border border-gray-100 bg-white shadow-lg hover:shadow-2xl hover:shadow-navy/10 transition-all duration-400"
               >
-                <div className="min-h-[240px] lg:min-h-[320px] relative overflow-hidden bg-navy/10">
-                  <img
-                    src={getArticleImage(featured.slug)}
-                    alt={featured.title}
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy/50 via-navy/10 to-transparent" />
-                  <div className="absolute bottom-6 left-6">
-                    <span className="px-3 py-1 rounded-full bg-white/90 text-navy text-xs font-semibold">
-                      {featured.type}
-                    </span>
-                  </div>
-                </div>
+                <InsightVisual categorySlug={categorySlug} variant="featured" label={featured.type} />
                 <div className="p-8 md:p-10 flex flex-col justify-center">
                   <div className="flex flex-wrap gap-2 mb-4">
                     {featured.tags.map((tag) => (
@@ -151,19 +134,11 @@ export default function InsightsCategoryPage() {
                       to={`/insights/${categorySlug}/${article.slug}`}
                       className="group flex flex-col h-full rounded-2xl border border-gray-100 bg-white overflow-hidden hover:shadow-xl hover:shadow-navy/8 hover:border-teal/30 transition-all duration-400"
                     >
-                      <div className="h-44 relative overflow-hidden bg-navy/10">
-                        <img
-                          src={getArticleImage(article.slug)}
-                          alt={article.title}
-                          className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-navy/40 to-transparent" />
-                        <div className="absolute top-4 left-4">
-                          <span className="px-2.5 py-1 rounded-full bg-white/90 text-navy text-[10px] font-semibold uppercase tracking-wide">
-                            {article.type}
-                          </span>
-                        </div>
-                      </div>
+                      <InsightVisual
+                        categorySlug={categorySlug}
+                        variant="article"
+                        label={article.type}
+                      />
                       <div className="p-6 flex flex-col flex-1">
                         <div className="flex flex-wrap gap-1.5 mb-3">
                           {article.tags.slice(0, 2).map((tag) => (

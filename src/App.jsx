@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import FloatingWhatsApp from './components/FloatingWhatsApp'
 import ScrollProgress from './components/ui/Effects'
+import SeoManager from './components/SeoManager'
 import HomePage from './pages/HomePage'
 import JobOpeningsPage from './pages/JobOpeningsPage'
 import InsightsCategoryPage from './pages/InsightsCategoryPage'
@@ -34,6 +35,7 @@ function ScrollToTop() {
 function AppLayout() {
   return (
     <>
+      <SeoManager />
       <ScrollProgress />
       <Navbar />
       <main>
