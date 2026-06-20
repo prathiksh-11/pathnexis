@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight, Sparkles, Brain, GraduationCap, TrendingUp, Shield, Zap, Globe2, Building2, Infinity } from 'lucide-react'
 import { FloatingOrbs, GridOverlay } from './ui/Effects'
 import WaveDivider from './ui/WaveDivider'
+import AntigravityBackground from './AntigravityBackground'
 
 const pillars = [
   { icon: Brain, label: 'Digital Intelligence', desc: 'AI, Cloud & Engineering' },
@@ -109,6 +110,7 @@ export default function Hero() {
       <div className="absolute inset-0 shadow-[inset_0_0_120px_rgba(10,31,66,0.6)]" />
 
       <AuroraGlow />
+      <AntigravityBackground />
       <ScanLine />
       <GridOverlay />
       <FloatingOrbs />

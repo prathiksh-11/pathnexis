@@ -16,7 +16,6 @@ export default function CtaBanner() {
 
       <div className="absolute inset-0 bg-gradient-to-r from-navy-dark/95 via-navy/75 to-navy-dark/40" />
       <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/80 via-transparent to-navy-dark/30" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_50%,rgba(0,201,183,0.12),transparent_55%)]" />
 
       <div
         className="absolute inset-0 opacity-[0.04]"

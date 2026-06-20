@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useMemo, useState, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   ArrowLeft,
@@ -12,6 +12,7 @@ import {
 } from 'lucide-react'
 import { GridOverlay } from '../components/ui/Effects'
 import ApplyModal from '../components/ApplyModal'
+import CareerPillarSections from '../components/CareerPillarSections'
 import { jobDepartments, jobs } from '../data/jobs'
 
 const fadeUp = {
@@ -21,9 +22,21 @@ const fadeUp = {
 }
 
 export default function JobOpeningsPage() {
+  const location = useLocation()
   const [activeDept, setActiveDept] = useState('All')
   const [query, setQuery] = useState('')
   const [applyJob, setApplyJob] = useState(null)
+
+  useEffect(() => {
+    if (!location.hash) return
+    const id = location.hash.slice(1)
+    const el = document.getElementById(id)
+    if (el) {
+      requestAnimationFrame(() => {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      })
+    }
+  }, [location.hash])
 
   const filteredJobs = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -103,6 +116,32 @@ export default function JobOpeningsPage() {
               </div>
             ))}
           </motion.div>
+        </div>
+      </section>
+
+      {/* Culture & programs */}
+      <section className="py-20 md:py-28 bg-white relative">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mb-14"
+          >
+            <p className="text-teal text-xs font-semibold tracking-[0.25em] uppercase mb-3">
+              Life at Pathnexis
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">
+              A Culture Built for Growth
+            </h2>
+            <p className="text-slate leading-relaxed">
+              Whether you&apos;re an experienced professional, a recent graduate, or a student
+              beginning your journey, Pathnexis offers opportunities to learn, contribute, and grow
+              alongside a team driven by purpose and progress.
+            </p>
+          </motion.div>
+
+          <CareerPillarSections />
         </div>
       </section>
 

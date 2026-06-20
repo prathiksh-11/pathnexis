@@ -48,18 +48,38 @@ export default function AntigravityBackground() {
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const ctx = canvas.getContext('2d')
-    let width = window.innerWidth
-    let height = window.innerHeight
+    let width = 0
+    let height = 0
 
     const resize = () => {
-      width = window.innerWidth
-      height = window.innerHeight
+      const parent = canvas.parentElement
+      if (!parent) return
+      width = parent.clientWidth
+      height = parent.clientHeight
       const dpr = Math.min(window.devicePixelRatio || 1, 2)
       canvas.width = width * dpr
       canvas.height = height * dpr
       canvas.style.width = `${width}px`
       canvas.style.height = `${height}px`
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    }
+
+    const toLocal = (clientX, clientY) => {
+      const rect = canvas.getBoundingClientRect()
+      return {
+        x: clientX - rect.left,
+        y: clientY - rect.top,
+        inBounds:
+          clientX >= rect.left &&
+          clientX <= rect.right &&
+          clientY >= rect.top &&
+          clientY <= rect.bottom,
+      }
+    }
+
+    const isHeroVisible = () => {
+      const rect = canvas.getBoundingClientRect()
+      return rect.bottom > 0 && rect.top < window.innerHeight
     }
 
     const startLoop = () => {
@@ -115,29 +135,37 @@ export default function AntigravityBackground() {
     }
 
     const onMouseMove = (e) => {
-      const prev = mouseRef.current
-      mouseRef.current = { x: e.clientX, y: e.clientY, px: prev.x, py: prev.y }
-      const speed = Math.hypot(e.clientX - prev.x, e.clientY - prev.y)
+      if (!isHeroVisible()) return
 
-      if (detectShake(e.clientX, e.clientY, speed)) {
+      const local = toLocal(e.clientX, e.clientY)
+      if (!local.inBounds) return
+
+      const prev = mouseRef.current
+      mouseRef.current = { x: local.x, y: local.y, px: prev.x, py: prev.y }
+      const speed = Math.hypot(local.x - prev.x, local.y - prev.y)
+
+      if (detectShake(local.x, local.y, speed)) {
         const count = Math.min(12 + Math.floor(speed / 2), 28)
-        spawnBurst(e.clientX, e.clientY, count, Math.min(speed / 8, 3), true)
+        spawnBurst(local.x, local.y, count, Math.min(speed / 8, 3), true)
       }
     }
 
     const onTouchMove = (e) => {
-      if (!e.touches[0]) return
+      if (!e.touches[0] || !isHeroVisible()) return
       const t = e.touches[0]
+      const local = toLocal(t.clientX, t.clientY)
+      if (!local.inBounds) return
+
       const prev = mouseRef.current
-      mouseRef.current = { x: t.clientX, y: t.clientY, px: prev.x, py: prev.py }
-      const speed = Math.hypot(t.clientX - prev.x, t.clientY - prev.y)
-      if (detectShake(t.clientX, t.clientY, speed)) {
-        spawnBurst(t.clientX, t.clientY, 16, 2.2, true)
+      mouseRef.current = { x: local.x, y: local.y, px: prev.x, py: prev.y }
+      const speed = Math.hypot(local.x - prev.x, local.y - prev.y)
+      if (detectShake(local.x, local.y, speed)) {
+        spawnBurst(local.x, local.y, 16, 2.2, true)
       }
     }
 
     const onScroll = () => {
-      if (reducedMotion) return
+      if (reducedMotion || !isHeroVisible()) return
 
       const now = Date.now()
       const currentY = window.scrollY
@@ -171,48 +199,16 @@ export default function AntigravityBackground() {
       sparklesRef.current = sparklesRef.current.filter((s) => s.life > 0.02)
 
       const hasSparkles = sparklesRef.current.length > 0
-      const hasGlow = glowRef.current > 0.02
-      const hasFlash = flashRef.current > 0.02
 
-      if (!hasSparkles && !hasGlow && !hasFlash) {
+      if (!hasSparkles) {
         ctx.clearRect(0, 0, width, height)
+        glowRef.current = 0
+        flashRef.current = 0
         runningRef.current = false
         return
       }
 
       ctx.clearRect(0, 0, width, height)
-
-      // Light color wash on shake / scroll up
-      if (hasFlash) {
-        const f = flashRef.current
-        const wash = ctx.createRadialGradient(
-          width / 2,
-          height / 2,
-          0,
-          width / 2,
-          height / 2,
-          Math.max(width, height) * 0.7,
-        )
-        wash.addColorStop(0, `rgba(255, 255, 255, ${0.22 * f})`)
-        wash.addColorStop(0.5, `rgba(245, 250, 255, ${0.1 * f})`)
-        wash.addColorStop(1, 'rgba(255, 255, 255, 0)')
-        ctx.fillStyle = wash
-        ctx.fillRect(0, 0, width, height)
-      }
-
-      const { x: mx, y: my } = mouseRef.current
-
-      if (hasGlow && mx > 0) {
-        const a = glowRef.current
-        const cursorGlow = ctx.createRadialGradient(mx, my, 0, mx, my, 160 * a)
-        cursorGlow.addColorStop(0, `rgba(255, 255, 255, ${0.5 * a})`)
-        cursorGlow.addColorStop(0.5, `rgba(245, 250, 255, ${0.2 * a})`)
-        cursorGlow.addColorStop(1, 'rgba(255, 255, 255, 0)')
-        ctx.fillStyle = cursorGlow
-        ctx.beginPath()
-        ctx.arc(mx, my, 160 * a, 0, Math.PI * 2)
-        ctx.fill()
-      }
 
       for (const s of sparklesRef.current) {
         s.x += s.vx
@@ -257,7 +253,7 @@ export default function AntigravityBackground() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="fixed inset-0 z-[25] pointer-events-none"
+      className="absolute inset-0 z-[6] pointer-events-none"
     />
   )
 }

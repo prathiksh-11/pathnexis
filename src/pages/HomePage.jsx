@@ -1,5 +1,4 @@
 import Hero from '../components/Hero'
-import AntigravityBackground from '../components/AntigravityBackground'
 import About from '../components/About'
 import TrustedClients from '../components/TrustedClients'
 import Capabilities from '../components/Capabilities'
@@ -14,8 +13,7 @@ import CtaBanner from '../components/CtaBanner'
 export default function HomePage() {
   return (
     <div className="relative">
-      <AntigravityBackground />
-      <div className="relative z-[1]">
+      <div className="relative">
         <Hero />
         <About />
         <TrustedClients />
