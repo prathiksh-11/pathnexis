@@ -1,70 +1,45 @@
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
   Brain, Code, Cloud, Smartphone, BarChart3, Bot,
   GraduationCap, Users, Briefcase, BookOpen,
-  TrendingUp, Megaphone, Settings, LineChart,
+  TrendingUp, Megaphone, Settings, LineChart, ArrowRight,
 } from 'lucide-react'
 import SectionHeading, { fadeUp } from './ui/SectionHeading'
+import { capabilityList } from '../data/capabilities'
 
-const capabilities = [
-  {
-    id: 'digital-intelligence',
-    num: '01',
-    title: 'Digital Intelligence',
-    subtitle: 'Engineering Modern Enterprises',
-    icon: Brain,
-    accent: 'navy',
-    services: [
-      { icon: Bot, label: 'Artificial Intelligence' },
-      { icon: Code, label: 'Software Engineering' },
-      { icon: Settings, label: 'Enterprise Applications' },
-      { icon: Cloud, label: 'Cloud Solutions' },
-      { icon: Smartphone, label: 'Mobile Applications' },
-      { icon: BarChart3, label: 'Data Analytics' },
-      { icon: LineChart, label: 'Business Intelligence' },
-      { icon: Settings, label: 'Automation' },
-    ],
-    outcome: 'Accelerated innovation, improved efficiency, and scalable digital growth.',
-  },
-  {
-    id: 'human-capital',
-    num: '02',
-    title: 'Human Capital Development',
-    subtitle: 'Developing Future-Ready Talent',
-    icon: GraduationCap,
-    accent: 'teal',
-    services: [
-      { icon: BookOpen, label: 'Professional Training' },
-      { icon: TrendingUp, label: 'Career Development' },
-      { icon: Users, label: 'Internship Programs' },
-      { icon: Briefcase, label: 'Leadership Development' },
-      { icon: GraduationCap, label: 'Corporate Learning' },
-      { icon: Users, label: 'Coaching & Mentorship' },
-      { icon: BookOpen, label: 'Workforce Readiness' },
-      { icon: Briefcase, label: 'Placement Enablement' },
-    ],
-    outcome: 'Empowered professionals, stronger teams, and sustainable capability development.',
-  },
-  {
-    id: 'business-transformation',
-    num: '03',
-    title: 'Business Transformation',
-    subtitle: 'Creating Sustainable Growth',
-    icon: TrendingUp,
-    accent: 'blend',
-    services: [
-      { icon: LineChart, label: 'Strategic Advisory' },
-      { icon: Users, label: 'HR Consulting' },
-      { icon: Briefcase, label: 'Talent Acquisition' },
-      { icon: Megaphone, label: 'Brand Strategy' },
-      { icon: Megaphone, label: 'Digital Marketing' },
-      { icon: BarChart3, label: 'Performance Marketing' },
-      { icon: Settings, label: 'Operational Excellence' },
-      { icon: TrendingUp, label: 'Business Growth Strategy' },
-    ],
-    outcome: 'Stronger organizations, improved performance, and long-term growth.',
-  },
-]
+const iconMap = {
+  'Artificial Intelligence': Bot,
+  'Software Engineering': Code,
+  'Enterprise Applications': Settings,
+  'Cloud Solutions': Cloud,
+  'Mobile Applications': Smartphone,
+  'Data Analytics': BarChart3,
+  'Business Intelligence': LineChart,
+  Automation: Settings,
+  'Professional Training': BookOpen,
+  'Career Development': TrendingUp,
+  'Internship Programs': Users,
+  'Leadership Development': Briefcase,
+  'Corporate Learning': GraduationCap,
+  'Coaching & Mentorship': Users,
+  'Workforce Readiness': BookOpen,
+  'Placement Enablement': Briefcase,
+  'Strategic Advisory': LineChart,
+  'HR Consulting': Users,
+  'Talent Acquisition': Briefcase,
+  'Brand Strategy': Megaphone,
+  'Digital Marketing': Megaphone,
+  'Performance Marketing': BarChart3,
+  'Operational Excellence': Settings,
+  'Business Growth Strategy': TrendingUp,
+}
+
+const pillarIcons = {
+  'digital-intelligence': Brain,
+  'human-capital': GraduationCap,
+  'business-transformation': TrendingUp,
+}
 
 const accentMap = {
   navy: 'from-navy to-navy-light',
@@ -86,11 +61,12 @@ export default function Capabilities() {
         />
 
         <div className="space-y-16">
-          {capabilities.map((cap, index) => {
+          {capabilityList.map((cap, index) => {
             const reversed = index % 2 === 1
+            const PillarIcon = pillarIcons[cap.slug]
             return (
               <motion.div
-                key={cap.id}
+                key={cap.slug}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-80px' }}
@@ -99,7 +75,6 @@ export default function Capabilities() {
                   reversed ? 'lg:[direction:rtl]' : ''
                 }`}
               >
-                {/* Header panel */}
                 <div className={`bg-gradient-to-br ${accentMap[cap.accent]} p-10 md:p-12 flex flex-col justify-center lg:[direction:ltr] relative overflow-hidden`}>
                   <div className="absolute top-0 right-0 text-[8rem] font-black text-white/5 leading-none select-none">
                     {cap.num}
@@ -108,34 +83,36 @@ export default function Capabilities() {
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     className="w-16 h-16 rounded-2xl bg-white/15 flex items-center justify-center mb-6 relative"
                   >
-                    <cap.icon className="text-white" size={30} />
+                    <PillarIcon className="text-white" size={30} />
                   </motion.div>
                   <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 relative">{cap.title}</h3>
                   <p className="text-white/70 text-lg relative">{cap.subtitle}</p>
                   <div className="mt-8 h-1 w-16 bg-teal rounded-full relative" />
                 </div>
 
-                {/* Services panel */}
-                <div className="p-8 md:p-10 bg-surface lg:[direction:ltr]">
-                  <div className="grid sm:grid-cols-2 gap-3 mb-8">
-                    {cap.services.map((service, si) => (
-                      <motion.div
-                        key={service.label}
-                        initial={{ opacity: 0, x: reversed ? 20 : -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: si * 0.05 }}
-                        whileHover={{ x: 4, borderColor: 'rgba(0,201,183,0.4)', backgroundColor: 'white' }}
-                        className="flex items-center gap-3 bg-white/60 rounded-xl px-4 py-3.5 border border-gray-100 transition-all duration-300"
-                      >
-                        <service.icon size={17} className="text-teal shrink-0" />
-                        <span className="text-sm font-medium text-navy">{service.label}</span>
-                      </motion.div>
-                    ))}
+                <div className="p-8 md:p-10 bg-surface lg:[direction:ltr] flex flex-col">
+                  <div className="grid sm:grid-cols-2 gap-3 mb-8 flex-1">
+                    {cap.services.map((label, si) => {
+                      const ServiceIcon = iconMap[label] || Settings
+                      return (
+                        <motion.div
+                          key={label}
+                          initial={{ opacity: 0, x: reversed ? 20 : -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: si * 0.05 }}
+                          whileHover={{ x: 4, borderColor: 'rgba(0,201,183,0.4)', backgroundColor: 'white' }}
+                          className="flex items-center gap-3 bg-white/60 rounded-xl px-4 py-3.5 border border-gray-100 transition-all duration-300"
+                        >
+                          <ServiceIcon size={17} className="text-teal shrink-0" />
+                          <span className="text-sm font-medium text-navy">{label}</span>
+                        </motion.div>
+                      )
+                    })}
                   </div>
                   <motion.div
                     {...fadeUp}
-                    className="flex items-start gap-4 p-5 rounded-2xl bg-gradient-to-r from-teal/5 to-navy/5 border border-teal/10"
+                    className="flex items-start gap-4 p-5 rounded-2xl bg-gradient-to-r from-teal/5 to-navy/5 border border-teal/10 mb-6"
                   >
                     <div className="w-1 self-stretch bg-gradient-to-b from-teal to-navy-light rounded-full shrink-0" />
                     <p className="text-slate leading-relaxed">
@@ -143,6 +120,13 @@ export default function Capabilities() {
                       {cap.outcome}
                     </p>
                   </motion.div>
+                  <Link
+                    to={`/capabilities/${cap.slug}`}
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-navy text-white font-semibold rounded-full hover:bg-navy-light transition-colors group self-start"
+                  >
+                    Explore
+                    <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                  </Link>
                 </div>
               </motion.div>
             )

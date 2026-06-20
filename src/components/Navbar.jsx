@@ -1,17 +1,18 @@
+import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { useActiveSection } from './ui/Effects'
 
 const links = [
-  { label: 'Home', href: '#home', id: 'home' },
-  { label: 'About', href: '#about', id: 'about' },
-  { label: 'Capabilities', href: '#capabilities', id: 'capabilities' },
-  { label: 'Industries', href: '#industries', id: 'industries' },
-  { label: 'Innovation', href: '#innovation', id: 'innovation' },
-  { label: 'Insights', href: '#insights', id: 'insights' },
-  { label: 'Careers', href: '#careers', id: 'careers' },
-  { label: 'Contact', href: '#contact', id: 'contact' },
+  { label: 'Home', href: '/#home', id: 'home' },
+  { label: 'About', href: '/#about', id: 'about' },
+  { label: 'Capabilities', href: '/#capabilities', id: 'capabilities' },
+  { label: 'Industries', href: '/#industries', id: 'industries' },
+  { label: 'Innovation', href: '/#innovation', id: 'innovation' },
+  { label: 'Insights', href: '/#insights', id: 'insights' },
+  { label: 'Careers', href: '/#careers', id: 'careers' },
+  { label: 'Contact', href: '/#contact', id: 'contact' },
 ]
 
 export default function Navbar() {
@@ -42,18 +43,15 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <motion.a
-          href="#home"
-          className="flex items-center gap-3 group"
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
-        >
-          <img
-            src="/logo.png"
-            alt="Pathnexis"
-            className="h-10 w-auto"
-          />
-        </motion.a>
+        <Link to="/" className="flex items-center gap-3 group">
+          <motion.span whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+            <img
+              src="/logo.png"
+              alt="Pathnexis"
+              className="h-10 w-auto"
+            />
+          </motion.span>
+        </Link>
 
         <div className="hidden lg:flex items-center gap-0.5">
           {links.map((link) => {
@@ -80,7 +78,7 @@ export default function Navbar() {
             )
           })}
           <motion.a
-            href="#contact"
+            href="/#contact"
             whileHover={{ scale: 1.05, boxShadow: '0 8px 24px rgba(0,201,183,0.35)' }}
             whileTap={{ scale: 0.95 }}
             className="ml-4 px-5 py-2.5 bg-teal text-white text-sm font-semibold rounded-full hover:bg-teal-dark transition-colors"
@@ -123,7 +121,7 @@ export default function Navbar() {
                 </motion.a>
               ))}
               <motion.a
-                href="#contact"
+                href="/#contact"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}

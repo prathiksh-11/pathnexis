@@ -1,18 +1,8 @@
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { FlaskConical, Lightbulb, FileText, Layers } from 'lucide-react'
+import { ArrowRight, FlaskConical } from 'lucide-react'
 import SectionHeading, { fadeLeft, fadeRight, staggerContainer, staggerItem } from './ui/SectionHeading'
-
-const focusAreas = [
-  'Artificial Intelligence', 'Future of Work', 'Learning Technologies',
-  'Business Intelligence', 'Automation', 'Digital Ecosystems',
-]
-
-const research = [
-  { icon: FileText, label: 'Whitepapers', desc: 'Deep-dive analysis' },
-  { icon: Lightbulb, label: 'Research Reports', desc: 'Industry insights' },
-  { icon: FlaskConical, label: 'Innovation Projects', desc: 'Live experiments' },
-  { icon: Layers, label: 'Future Platforms', desc: 'Next-gen tools' },
-]
+import { homepageFocusAreas, homepageResearch } from '../data/innovationLab'
 
 export default function Innovation() {
   return (
@@ -23,18 +13,28 @@ export default function Innovation() {
             <SectionHeading
               tag="Innovation Lab"
               title="Exploring Tomorrow's Possibilities"
-              subtitle="We don't simply adapt to the future. We help create it."
+              subtitle="Innovation begins with curiosity."
               align="left"
             />
+
+            <p className="text-slate leading-relaxed mb-6 -mt-4">
+              Through research, experimentation, and future-focused thinking, Pathnexis explores
+              emerging technologies, evolving industries, and new opportunities that have the
+              potential to create meaningful impact.
+            </p>
+
+            <p className="text-xs font-semibold tracking-[0.15em] uppercase text-teal mb-4">
+              Areas of Exploration
+            </p>
 
             <motion.div
               variants={staggerContainer}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="grid grid-cols-2 gap-3"
+              className="grid grid-cols-2 gap-3 mb-8"
             >
-              {focusAreas.map((area, i) => (
+              {homepageFocusAreas.map((area, i) => (
                 <motion.div
                   key={area}
                   variants={staggerItem}
@@ -50,6 +50,21 @@ export default function Innovation() {
                 </motion.div>
               ))}
             </motion.div>
+
+            <p className="text-navy font-semibold mb-8">
+              We don&apos;t simply adapt to the future. We help create it.
+            </p>
+
+            <Link
+              to="/innovation-lab"
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-navy text-white font-semibold rounded-full hover:bg-navy-light transition-colors group"
+            >
+              Explore Innovation Lab
+              <ArrowRight
+                size={18}
+                className="group-hover:translate-x-1 transition-transform"
+              />
+            </Link>
           </motion.div>
 
           <motion.div {...fadeRight} className="relative">
@@ -67,10 +82,12 @@ export default function Innovation() {
               </motion.div>
 
               <h3 className="text-2xl font-bold text-navy mb-2">Research Initiatives</h3>
-              <p className="text-slate text-sm mb-8">Whitepapers, reports, and future platforms.</p>
+              <p className="text-slate text-sm mb-8">
+                Whitepapers, reports, and future platforms.
+              </p>
 
-              <div className="grid grid-cols-2 gap-4">
-                {research.map((item, i) => (
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                {homepageResearch.map((item, i) => (
                   <motion.div
                     key={item.label}
                     initial={{ opacity: 0, y: 20 }}
@@ -88,6 +105,14 @@ export default function Innovation() {
                   </motion.div>
                 ))}
               </div>
+
+              <Link
+                to="/innovation-lab"
+                className="inline-flex items-center gap-2 text-teal font-semibold text-sm hover:gap-3 transition-all"
+              >
+                View more
+                <ArrowRight size={16} />
+              </Link>
             </div>
           </motion.div>
         </div>

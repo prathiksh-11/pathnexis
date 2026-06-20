@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowRight, Sparkles, Brain, GraduationCap, TrendingUp, Shield, Zap, Globe2 } from 'lucide-react'
+import { ArrowRight, Sparkles, Brain, GraduationCap, TrendingUp, Shield, Zap, Globe2, Building2, Infinity } from 'lucide-react'
 import { FloatingOrbs, GridOverlay } from './ui/Effects'
 import WaveDivider from './ui/WaveDivider'
 
@@ -16,6 +16,30 @@ const trustBadges = [
 ]
 
 const words = ['Building', 'Intelligent', 'Futures']
+
+const stats = [
+  { num: '3', label: 'Core Capabilities', icon: Brain },
+  { num: '7+', label: 'Industries Served', icon: Building2 },
+  { num: '∞', label: 'Possibilities Ahead', icon: Infinity },
+]
+
+function AuroraGlow() {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <div className="absolute -top-1/4 -right-1/4 w-[70%] h-[70%] rounded-full bg-teal/20 blur-[100px] animate-aurora" />
+      <div className="absolute -bottom-1/3 -left-1/4 w-[60%] h-[60%] rounded-full bg-navy-light/40 blur-[120px] animate-aurora" style={{ animationDelay: '-4s' }} />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[40%] h-[40%] rounded-full bg-teal/10 blur-[80px] animate-aurora" style={{ animationDelay: '-8s' }} />
+    </div>
+  )
+}
+
+function ScanLine() {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <div className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-teal/40 to-transparent animate-scan-line" />
+    </div>
+  )
+}
 
 function NetworkNodes() {
   const nodes = [
@@ -61,7 +85,7 @@ export default function Hero() {
   const opacity = useTransform(scrollY, [0, 500], [1, 0.2])
 
   return (
-    <section id="home" className="relative min-h-[100svh] flex items-center overflow-hidden">
+    <section id="home" className="relative min-h-[100svh] flex flex-col overflow-hidden">
       {/* Cinematic parallax banner */}
       <motion.div className="absolute inset-0" style={{ y: bgY, scale: bgScale }}>
         <motion.img
@@ -75,17 +99,27 @@ export default function Hero() {
       </motion.div>
 
       {/* Layered overlays */}
-      <div className="absolute inset-0 bg-gradient-to-r from-navy-dark/[0.97] via-navy/[0.88] to-navy-dark/45" />
-      <div className="absolute inset-0 bg-gradient-to-t from-navy-dark via-navy-dark/20 to-navy-dark/70" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_75%_40%,rgba(0,201,183,0.18),transparent_55%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_0%_100%,rgba(0,201,183,0.08),transparent_50%)]" />
+      <div className="absolute inset-0 bg-gradient-to-r from-navy-dark/[0.97] via-navy/[0.82] to-navy-dark/35" />
+      <div className="absolute inset-0 bg-gradient-to-t from-navy-dark via-navy-dark/15 to-navy-dark/65" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_75%_35%,rgba(0,201,183,0.22),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_0%_100%,rgba(0,201,183,0.12),transparent_45%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(0,201,183,0.08),transparent_35%)]" />
 
       {/* Vignette */}
       <div className="absolute inset-0 shadow-[inset_0_0_120px_rgba(10,31,66,0.6)]" />
 
+      <AuroraGlow />
+      <ScanLine />
       <GridOverlay />
       <FloatingOrbs />
       <NetworkNodes />
+
+      {/* Ambient light beams */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <div className="absolute top-0 right-[10%] w-px h-full bg-gradient-to-b from-transparent via-teal/25 to-transparent rotate-[12deg] origin-top" />
+        <div className="absolute top-0 right-[28%] w-px h-[70%] bg-gradient-to-b from-teal/15 via-teal/5 to-transparent -rotate-[8deg] origin-top" />
+        <div className="absolute -top-20 left-[20%] w-[500px] h-[500px] rounded-full bg-teal/[0.07] blur-[100px]" />
+      </div>
 
       {/* Side accent bar */}
       <motion.div
@@ -95,18 +129,20 @@ export default function Hero() {
         className="absolute left-0 top-1/2 -translate-y-1/2 w-1 bg-gradient-to-b from-transparent via-teal to-transparent opacity-60 hidden lg:block"
       />
 
-      <motion.div
-        className="relative max-w-7xl mx-auto px-6 pt-28 pb-24 md:pt-32 md:pb-28 w-full"
-        style={{ y: contentY, opacity }}
-      >
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+      {/* Main content wrapper */}
+      <div className="relative flex-1 flex flex-col justify-center w-full z-10">
+        <motion.div
+          className="max-w-7xl mx-auto px-6 pt-28 pb-6 md:pt-32 md:pb-8 w-full"
+          style={{ y: contentY, opacity }}
+        >
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Headline */}
           <div className="lg:col-span-7">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-teal/30 bg-teal/10 backdrop-blur-md mb-7"
+              className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-teal/40 bg-gradient-to-r from-teal/15 to-teal/5 shadow-[0_0_24px_rgba(0,201,183,0.15)] mb-7"
             >
               <motion.div
                 animate={{ rotate: [0, 15, -15, 0] }}
@@ -119,14 +155,18 @@ export default function Hero() {
               </span>
             </motion.div>
 
-            <h1 className="text-[2.75rem] sm:text-6xl lg:text-7xl xl:text-[5.25rem] font-bold text-white leading-[1.02] mb-7 tracking-tight">
+            <h1 className="hero-title-glow text-[2.75rem] sm:text-6xl lg:text-7xl xl:text-[5.25rem] font-bold text-white leading-[1.02] mb-7 tracking-tight">
               {words.map((word, i) => (
                 <motion.span
                   key={word}
                   initial={{ opacity: 0, y: 50, filter: 'blur(8px)' }}
                   animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                   transition={{ delay: 0.15 + i * 0.18, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                  className={`inline-block mr-[0.2em] ${word === 'Intelligent' ? 'text-teal' : ''}`}
+                  className={`inline-block mr-[0.2em] ${
+                    word === 'Intelligent'
+                      ? 'bg-gradient-to-r from-teal via-teal-light to-teal bg-clip-text text-transparent'
+                      : ''
+                  }`}
                 >
                   {word}
                   {i < words.length - 1 && <br className="hidden sm:block" />}
@@ -138,7 +178,7 @@ export default function Hero() {
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ delay: 0.7, duration: 0.8 }}
-              className="h-px w-24 bg-gradient-to-r from-teal to-transparent mb-6 origin-left"
+              className="h-[2px] w-32 bg-gradient-to-r from-teal via-teal-light to-transparent mb-6 origin-left rounded-full shadow-[0_0_12px_rgba(0,201,183,0.5)]"
             />
 
             <motion.p
@@ -241,13 +281,13 @@ export default function Hero() {
               </div>
 
               <motion.div
-                whileHover={{ y: -4 }}
+                whileHover={{ y: -4, boxShadow: '0 32px 64px -16px rgba(0,201,183,0.2)' }}
                 transition={{ duration: 0.4 }}
-                className="relative glass rounded-3xl p-8 border border-white/12 shadow-2xl shadow-black/30"
+                className="relative rounded-3xl p-7 border border-teal/30 bg-[#0a1f42] shadow-2xl shadow-black/50"
               >
-                <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-teal/50 to-transparent" />
+                <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-teal/60 to-transparent" />
 
-                <div className="flex items-center justify-between mb-7">
+                <div className="relative flex items-center justify-between mb-7">
                   <div className="bg-white rounded-xl px-4 py-3 shadow-lg">
                     <img src="/logo.png" alt="Pathnexis" className="h-9" />
                   </div>
@@ -263,11 +303,11 @@ export default function Hero() {
                   </div>
                 </div>
 
-                <p className="text-white/35 text-[10px] tracking-[0.25em] uppercase mb-5 text-center">
+                <p className="relative text-white/35 text-[10px] tracking-[0.25em] uppercase mb-5 text-center">
                   Software &bull; Education &bull; Business
                 </p>
 
-                <div className="space-y-2.5">
+                <div className="relative space-y-2.5">
                   {pillars.map((item, i) => (
                     <motion.div
                       key={item.label}
@@ -275,7 +315,7 @@ export default function Hero() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.75 + i * 0.15 }}
                       whileHover={{ x: 8, backgroundColor: 'rgba(0,201,183,0.08)' }}
-                      className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/8 transition-all duration-300 cursor-default group"
+                      className="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.06] border border-white/10 transition-all duration-300 cursor-default group"
                     >
                       <div className="w-11 h-11 rounded-xl bg-teal/15 flex items-center justify-center shrink-0 group-hover:bg-teal/25 transition-colors">
                         <item.icon size={20} className="text-teal-light" />
@@ -296,42 +336,52 @@ export default function Hero() {
             </div>
           </motion.div>
         </div>
-
-        {/* Stats bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-          className="mt-16 md:mt-20 grid grid-cols-3 border border-white/10 rounded-2xl glass overflow-hidden backdrop-blur-xl"
-        >
-          {[
-            { num: '3', label: 'Core Capabilities' },
-            { num: '7+', label: 'Industries Served' },
-            { num: '∞', label: 'Possibilities Ahead' },
-          ].map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.35 + i * 0.1 }}
-              whileHover={{ backgroundColor: 'rgba(255,255,255,0.06)' }}
-              className={`flex-1 px-4 py-5 md:px-10 md:py-7 text-center md:text-left transition-colors ${
-                i > 0 ? 'border-l border-white/10' : ''
-              }`}
-            >
-              <p className="text-2xl md:text-4xl font-bold text-teal mb-0.5">{stat.num}</p>
-              <p className="text-white/40 text-[10px] md:text-sm font-medium tracking-wide">{stat.label}</p>
-            </motion.div>
-          ))}
         </motion.div>
-      </motion.div>
+
+        {/* Stats bar — full width row below hero */}
+        <div className="max-w-7xl mx-auto px-6 pb-28 md:pb-32 w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2, duration: 0.8 }}
+            className="w-full rounded-2xl border border-teal/30 bg-[#0a1f42] shadow-[0_8px_40px_rgba(0,201,183,0.18)]"
+          >
+            <div className="grid grid-cols-3">
+              {stats.map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.35 + i * 0.1 }}
+                  whileHover={{ backgroundColor: 'rgba(0,201,183,0.08)' }}
+                  className={`group flex items-center justify-center lg:justify-start gap-3 md:gap-4 px-3 py-4 md:px-8 md:py-6 transition-colors duration-300 ${
+                    i > 0 ? 'border-l border-white/15' : ''
+                  }`}
+                >
+                  <div className="w-9 h-9 md:w-11 md:h-11 rounded-xl bg-teal/20 border border-teal/35 flex items-center justify-center shrink-0">
+                    <stat.icon size={16} className="text-teal-light md:w-[18px] md:h-[18px]" strokeWidth={2} />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xl md:text-3xl font-bold text-teal-light stat-glow leading-none mb-0.5">
+                      {stat.num}
+                    </p>
+                    <p className="text-white text-[9px] md:text-sm font-medium leading-tight">
+                      {stat.label}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
 
       {/* Scroll indicator */}
       <motion.a
         href="#about"
-        animate={{ y: [0, 10, 0] }}
+        animate={{ y: [0, 8, 0] }}
         transition={{ repeat: Infinity, duration: 2.5, ease: 'easeInOut' }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/25 hover:text-teal transition-colors z-10"
+        className="absolute bottom-[7.5rem] md:bottom-[8.5rem] left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-white/30 hover:text-teal transition-colors z-20"
         aria-label="Scroll down"
       >
         <span className="text-[10px] tracking-[0.3em] uppercase">Scroll</span>

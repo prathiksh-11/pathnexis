@@ -1,23 +1,14 @@
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { BookOpen, ArrowUpRight } from 'lucide-react'
 import SectionHeading, { staggerContainer, staggerItem } from './ui/SectionHeading'
-
-const categories = [
-  { title: 'AI & Emerging Technologies', count: '12+', color: 'from-navy/10 to-teal/10' },
-  { title: 'Digital Transformation', count: '8+', color: 'from-teal/10 to-navy/10' },
-  { title: 'Future of Work', count: '10+', color: 'from-navy/10 to-teal/5' },
-  { title: 'Leadership', count: '6+', color: 'from-teal/10 to-navy/5' },
-  { title: 'Business Growth', count: '9+', color: 'from-navy/5 to-teal/10' },
-  { title: 'Learning & Development', count: '7+', color: 'from-teal/5 to-navy/10' },
-]
+import { insightCategories, getCategoryImage } from '../data/insights'
 
 const contentTypes = ['Articles', 'Reports', 'Case Studies', 'Perspectives', 'Industry Research']
 
 export default function Insights() {
   return (
     <section id="insights" className="py-28 bg-white relative overflow-hidden">
-      <div className="absolute top-20 left-10 w-64 h-64 bg-teal/5 rounded-full blur-3xl pointer-events-none" />
-
       <div className="relative max-w-7xl mx-auto px-6">
         <SectionHeading
           tag="Insights Center"
@@ -32,27 +23,38 @@ export default function Insights() {
           viewport={{ once: true, margin: '-60px' }}
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-14"
         >
-          {categories.map((cat) => (
-            <motion.div
-              key={cat.title}
-              variants={staggerItem}
-              whileHover={{ y: -6, boxShadow: '0 20px 40px rgba(15,43,92,0.08)' }}
-              className={`group relative rounded-2xl p-6 border border-gray-100 bg-gradient-to-br ${cat.color} cursor-pointer overflow-hidden transition-shadow duration-400`}
-            >
-              <div className="absolute top-0 right-0 w-24 h-24 bg-teal/5 rounded-full blur-2xl group-hover:bg-teal/15 transition-all" />
-              <div className="flex items-start justify-between mb-5 relative">
-                <div className="w-11 h-11 rounded-xl bg-white shadow-sm flex items-center justify-center group-hover:shadow-md transition-shadow">
-                  <BookOpen className="text-teal" size={20} />
+          {insightCategories.map((cat) => (
+            <motion.div key={cat.slug} variants={staggerItem}>
+              <Link
+                to={`/insights/${cat.slug}`}
+                className={`group relative block rounded-2xl border border-gray-100 bg-white overflow-hidden transition-shadow duration-400 hover:shadow-[0_20px_40px_rgba(15,43,92,0.08)] hover:-translate-y-1.5`}
+              >
+                <div className="h-36 relative overflow-hidden bg-gray-100">
+                  <img
+                    src={getCategoryImage(cat.slug)}
+                    alt={cat.title}
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/25 to-transparent" />
                 </div>
-                <ArrowUpRight
-                  size={18}
-                  className="text-slate/40 group-hover:text-teal group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
-                />
-              </div>
-              <h3 className="text-lg font-bold text-navy mb-1 relative group-hover:text-teal transition-colors">
-                {cat.title}
-              </h3>
-              <p className="text-sm text-slate relative">{cat.count} publications</p>
+                <div className="p-6">
+                <div className="flex items-start justify-between mb-4 relative">
+                  <div className="w-11 h-11 rounded-xl bg-white shadow-sm flex items-center justify-center group-hover:shadow-md transition-shadow">
+                    <BookOpen className="text-teal" size={20} />
+                  </div>
+                  <ArrowUpRight
+                    size={18}
+                    className="text-slate/40 group-hover:text-teal group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+                  />
+                </div>
+                <h3 className="text-lg font-bold text-navy mb-1 relative group-hover:text-teal transition-colors">
+                  {cat.title}
+                </h3>
+                <p className="text-sm text-slate relative leading-relaxed line-clamp-3">
+                  {cat.description}
+                </p>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </motion.div>
