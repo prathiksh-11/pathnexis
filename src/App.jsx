@@ -33,11 +33,6 @@ function ScrollToTop() {
   return null
 }
 
-function VercelAnalytics() {
-  const { pathname } = useLocation()
-  return <Analytics route={pathname} />
-}
-
 function AppLayout() {
   return (
     <>
@@ -58,7 +53,7 @@ function AppLayout() {
       </main>
       <Footer />
       <FloatingWhatsApp />
-      <VercelAnalytics />
+      <Analytics />
     </>
   )
 }
