@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
-import { Heart, Rocket, GraduationCap, BookOpen, Users } from 'lucide-react'
+import { Heart, Rocket, GraduationCap, BookOpen, Users, ArrowRight } from 'lucide-react'
+import SectionHeading, { fadeLeft, staggerContainer, staggerItem } from './ui/SectionHeading'
 
 const perks = [
   { icon: Rocket, title: 'Life at Pathnexis', desc: 'A culture of innovation, growth, and continuous learning.' },
@@ -10,50 +11,55 @@ const perks = [
 
 export default function Careers() {
   return (
-    <section id="careers" className="py-24 bg-surface">
+    <section id="careers" className="py-28 bg-surface section-pattern relative">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <span className="text-teal font-semibold text-sm tracking-widest uppercase">Careers</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-navy mt-3 mb-6">
-              Build What&apos;s Next
-            </h2>
-            <p className="text-slate text-lg leading-relaxed mb-8">
-              Join a team that believes in intelligence, innovation, and impact. At Pathnexis,
-              you&apos;ll work on meaningful projects that shape the future of organizations
-              and individuals worldwide.
-            </p>
+          <motion.div {...fadeLeft}>
+            <SectionHeading
+              tag="Careers"
+              title="Build What's Next"
+              subtitle="Join a team that believes in intelligence, innovation, and impact."
+              align="left"
+            />
 
-            <div className="flex items-center gap-3 p-5 rounded-2xl bg-white border border-gray-100 shadow-sm">
-              <Heart className="text-teal shrink-0" size={24} />
-              <p className="text-navy font-medium">
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="flex items-center gap-4 p-6 rounded-2xl gradient-border"
+            >
+              <div className="w-12 h-12 rounded-xl bg-teal/10 flex items-center justify-center shrink-0">
+                <Heart className="text-teal" size={22} />
+              </div>
+              <p className="text-navy font-medium leading-relaxed">
                 Employer Promise: A culture of innovation, growth, and continuous learning.
               </p>
-            </div>
+            </motion.div>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 gap-5">
-            {perks.map((perk, i) => (
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: '-60px' }}
+            className="grid sm:grid-cols-2 gap-4"
+          >
+            {perks.map((perk) => (
               <motion.div
                 key={perk.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="bg-white rounded-2xl p-6 border border-gray-100 card-hover"
+                variants={staggerItem}
+                whileHover={{ y: -6, borderColor: 'rgba(0,201,183,0.4)' }}
+                className="bg-white rounded-2xl p-6 border border-gray-100 transition-all duration-400 group"
               >
-                <div className="w-11 h-11 rounded-xl bg-teal/10 flex items-center justify-center mb-4">
-                  <perk.icon className="text-teal" size={22} />
-                </div>
-                <h3 className="text-lg font-bold text-navy mb-2">{perk.title}</h3>
+                <motion.div
+                  whileHover={{ rotate: 10 }}
+                  className="w-11 h-11 rounded-xl bg-gradient-to-br from-teal/15 to-navy/5 flex items-center justify-center mb-4 group-hover:from-teal/25 transition-all"
+                >
+                  <perk.icon className="text-teal" size={20} />
+                </motion.div>
+                <h3 className="text-base font-bold text-navy mb-2">{perk.title}</h3>
                 <p className="text-slate text-sm leading-relaxed">{perk.desc}</p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         <motion.div
@@ -62,12 +68,15 @@ export default function Careers() {
           viewport={{ once: true }}
           className="mt-16 text-center"
         >
-          <a
+          <motion.a
             href="#contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-navy text-white font-semibold rounded-full hover:bg-navy-light transition-all hover:shadow-lg"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+            className="group inline-flex items-center gap-2 px-8 py-4 bg-navy text-white font-semibold rounded-full hover:bg-navy-light transition-all hover:shadow-xl hover:shadow-navy/20"
           >
             View Open Opportunities
-          </a>
+            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+          </motion.a>
         </motion.div>
       </div>
     </section>

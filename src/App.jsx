@@ -9,10 +9,12 @@ import Impact from './components/Impact'
 import Careers from './components/Careers'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import ScrollProgress from './components/ui/Effects'
 
 function App() {
   return (
     <>
+      <ScrollProgress />
       <Navbar />
       <main>
         <Hero />

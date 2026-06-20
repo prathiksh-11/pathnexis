@@ -53,13 +53,61 @@ body {
   border: 1px solid color-mix(in srgb, white 12%, transparent);
 }
 
+.glass-light {
+  background: color-mix(in srgb, white 75%, transparent);
+  backdrop-filter: blur(20px);
+  border: 1px solid color-mix(in srgb, white 90%, transparent);
+}
+
 .card-hover {
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease, border-color 0.3s ease;
 }
 
 .card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px -12px color-mix(in srgb, var(--color-navy) 20%, transparent);
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px -12px color-mix(in srgb, var(--color-navy) 18%, transparent);
+}
+
+.gradient-border {
+  position: relative;
+  background: white;
+  border-radius: 1rem;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--color-teal), var(--color-navy-light));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.section-pattern {
+  background-image:
+    radial-gradient(circle at 20% 50%, color-mix(in srgb, var(--color-teal) 6%, transparent) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, color-mix(in srgb, var(--color-navy) 4%, transparent) 0%, transparent 40%);
+}
+
+.shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, white 20%, transparent), transparent);
+  animation: shine 4s ease-in-out infinite;
 }
 
 @keyframes float {
@@ -71,16 +119,40 @@ body {
   animation: float 6s ease-in-out infinite;
 }
 
-@keyframes ken-burns {
-  0% { transform: scale(1.08); }
-  100% { transform: scale(1); }
-}
-
 @keyframes pulse-glow {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.8; }
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
 }
 
 .animate-pulse-glow {
-  animation: pulse-glow 4s ease-in-out infinite;
+  animation: pulse-glow 5s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes shine {
+  0%, 100% { left: -100%; }
+  50% { left: 150%; }
+}
+
+@keyframes ring-pulse {
+  0% { transform: scale(0.95); opacity: 0.5; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.5; }
+}
+
+.animate-ring {
+  animation: ring-pulse 3s ease-in-out infinite;
+}
+
+@keyframes draw-line {
+  from { stroke-dashoffset: 200; }
+  to { stroke-dashoffset: 0; }
 }

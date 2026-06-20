@@ -1,6 +1,7 @@
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion'
 import { useEffect, useRef } from 'react'
 import { Building2, Users, TrendingUp, Sparkles } from 'lucide-react'
+import SectionHeading from './ui/SectionHeading'
 
 const metrics = [
   { icon: Building2, value: 50, suffix: '+', label: 'Organizations Empowered' },
@@ -17,11 +18,10 @@ function Counter({ value, suffix }) {
   useEffect(() => {
     const el = ref.current
     if (!el) return
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          animate(count, value, { duration: 2, ease: 'easeOut' })
+          animate(count, value, { duration: 2.5, ease: [0.22, 1, 0.36, 1] })
           observer.disconnect()
         }
       },
@@ -41,9 +41,17 @@ function Counter({ value, suffix }) {
 
 export default function Impact() {
   return (
-    <section id="impact" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy-light to-teal-dark" />
-      <div className="absolute inset-0 opacity-10"
+    <section id="impact" className="py-28 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-navy-dark via-navy to-teal-dark" />
+      <motion.div
+        className="absolute inset-0 opacity-30"
+        animate={{ backgroundPosition: ['0% 0%', '100% 100%'] }}
+        transition={{ duration: 20, repeat: Infinity, repeatType: 'reverse' }}
+        style={{
+          backgroundImage: 'radial-gradient(circle at 30% 40%, rgba(0,201,183,0.3), transparent 50%), radial-gradient(circle at 70% 60%, rgba(15,43,92,0.5), transparent 50%)',
+        }}
+      />
+      <div className="absolute inset-0 opacity-[0.04]"
         style={{
           backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
           backgroundSize: '24px 24px',
@@ -51,36 +59,35 @@ export default function Impact() {
       />
 
       <div className="relative max-w-7xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <span className="text-teal-light font-semibold text-sm tracking-widest uppercase">Client Success & Impact</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-3 mb-4">
-            Trusted By Organizations That Believe In Growth
-          </h2>
-          <p className="text-white/60 max-w-2xl mx-auto text-lg">
-            Focused on outcomes — not just projects. Real transformation, measurable results.
-          </p>
-        </motion.div>
+        <SectionHeading
+          tag="Client Success & Impact"
+          title="Trusted By Organizations That Believe In Growth"
+          subtitle="Focused on outcomes — not just projects. Real transformation, measurable results."
+          light
+        />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
           {metrics.map((metric, i) => (
             <motion.div
               key={metric.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="glass rounded-2xl p-8 text-center card-hover"
+              transition={{ delay: i * 0.12, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ y: -6, borderColor: 'rgba(0,201,183,0.4)' }}
+              className="glass rounded-2xl p-8 text-center border border-white/8 transition-all duration-400 group"
             >
-              <metric.icon className="text-teal-light mx-auto mb-4" size={32} />
-              <div className="text-4xl md:text-5xl font-bold text-white mb-2">
+              <motion.div
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+                className="w-14 h-14 rounded-2xl bg-teal/15 flex items-center justify-center mx-auto mb-5 group-hover:bg-teal/25 transition-colors"
+              >
+                <metric.icon className="text-teal-light" size={26} />
+              </motion.div>
+              <div className="text-4xl md:text-5xl font-bold text-white mb-2 tabular-nums">
                 <Counter value={metric.value} suffix={metric.suffix} />
               </div>
-              <p className="text-white/70 text-sm font-medium">{metric.label}</p>
+              <p className="text-white/55 text-sm font-medium">{metric.label}</p>
             </motion.div>
           ))}
         </div>
@@ -91,12 +98,14 @@ export default function Impact() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <a
+          <motion.a
             href="#contact"
-            className="inline-flex items-center gap-2 px-10 py-4 bg-white text-navy font-bold rounded-full hover:bg-teal-light hover:text-white transition-all hover:shadow-xl hover:-translate-y-0.5"
+            whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(0,201,183,0.3)' }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-flex items-center gap-2 px-10 py-4 bg-white text-navy font-bold rounded-full transition-colors hover:bg-teal hover:text-white"
           >
             Let&apos;s Build What&apos;s Next
-          </a>
+          </motion.a>
         </motion.div>
       </div>
     </section>
