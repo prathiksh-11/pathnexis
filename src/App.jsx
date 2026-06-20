@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import FloatingWhatsApp from './components/FloatingWhatsApp'
@@ -32,6 +33,11 @@ function ScrollToTop() {
   return null
 }
 
+function VercelAnalytics() {
+  const { pathname } = useLocation()
+  return <Analytics route={pathname} />
+}
+
 function AppLayout() {
   return (
     <>
@@ -52,6 +58,7 @@ function AppLayout() {
       </main>
       <Footer />
       <FloatingWhatsApp />
+      <VercelAnalytics />
     </>
   )
 }
