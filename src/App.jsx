@@ -8,6 +8,7 @@ import Insights from './components/Insights'
 import Impact from './components/Impact'
 import Careers from './components/Careers'
 import Contact from './components/Contact'
+import CtaBanner from './components/CtaBanner'
 import Footer from './components/Footer'
 import ScrollProgress from './components/ui/Effects'
 
@@ -27,6 +28,7 @@ function App() {
         <Careers />
         <Contact />
       </main>
+      <CtaBanner />
       <Footer />
     </>
   )
