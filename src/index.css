@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0f2b5c;
+  --color-navy-dark: #0a1f42;
+  --color-navy-light: #1a3d6e;
+  --color-teal: #00c9b7;
+  --color-teal-light: #33d4c5;
+  --color-teal-dark: #00a89a;
+  --color-slate: #64748b;
+  --color-surface: #f8fafc;
+  --font-sans: "Outfit", system-ui, sans-serif;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+html {
+  scroll-padding-top: 5rem;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-surface);
+  color: var(--color-navy);
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--color-teal) 30%, transparent);
+  color: var(--color-navy-dark);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-teal) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.mesh-bg {
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 40%, color-mix(in srgb, var(--color-teal) 18%, transparent), transparent),
+    radial-gradient(ellipse 60% 50% at 80% 20%, color-mix(in srgb, var(--color-teal) 12%, transparent), transparent),
+    radial-gradient(ellipse 50% 40% at 60% 80%, color-mix(in srgb, var(--color-navy-light) 30%, transparent), transparent),
+    linear-gradient(160deg, var(--color-navy-dark) 0%, var(--color-navy) 50%, #0d2547 100%);
+}
+
+.glass {
+  background: color-mix(in srgb, white 8%, transparent);
+  backdrop-filter: blur(16px);
+  border: 1px solid color-mix(in srgb, white 12%, transparent);
+}
+
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -12px color-mix(in srgb, var(--color-navy) 20%, transparent);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes ken-burns {
+  0% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
