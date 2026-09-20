@@ -39,6 +39,9 @@ function getAllPaths() {
   const paths = [
     '/',
     '/products/whatnexis',
+    '/about',
+    '/contact',
+    '/capabilities',
     '/careers/opportunities',
     '/innovation-lab',
     '/privacy-policy',
@@ -57,6 +60,9 @@ function getAllPaths() {
 const priorityMap = {
   '/': '1.0',
   '/products/whatnexis': '0.9',
+  '/about': '0.85',
+  '/contact': '0.85',
+  '/capabilities': '0.85',
   '/careers/opportunities': '0.8',
   '/innovation-lab': '0.8',
   '/privacy-policy': '0.3',

@@ -5,15 +5,13 @@ import SocialLinks from './SocialLinks'
 
 const quickLinks = [
   { label: 'WhatNexis Growth Suite', href: '/products/whatnexis', isRoute: true },
-  { label: 'About', href: '/#about' },
-  { label: 'Capabilities', href: '/#capabilities' },
-  { label: 'Industries', href: '/#industries' },
-  { label: 'Innovation', href: '/#innovation' },
+  { label: 'About Us', href: '/about', isRoute: true },
+  { label: 'Enterprise Capabilities', href: '/capabilities', isRoute: true },
   { label: 'Innovation Lab', href: '/innovation-lab', isRoute: true },
-  { label: 'Insights', href: '/#insights' },
-  { label: 'Careers', href: '/#careers' },
-  { label: 'Open Opportunities', href: '/careers/opportunities', isRoute: true },
-  { label: 'Contact', href: '/#contact' },
+  { label: 'Careers & Opportunities', href: '/careers/opportunities', isRoute: true },
+  { label: 'Contact Us', href: '/contact', isRoute: true },
+  { label: 'Industries', href: '/#industries' },
+  { label: 'Insights & Research', href: '/#insights' },
 ]
 
 const legalLinks = [

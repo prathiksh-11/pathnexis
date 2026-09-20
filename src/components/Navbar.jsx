@@ -5,20 +5,20 @@ import { Menu, X, Sparkles } from 'lucide-react'
 import { useActiveSection } from './ui/Effects'
 
 const links = [
-  { label: 'Home', href: '/#home', id: 'home' },
+  { label: 'Home', href: '/', id: 'home', isRoute: true },
   { label: 'WhatNexis', href: '/products/whatnexis', id: 'whatnexis', isRoute: true, badge: 'Product' },
-  { label: 'About', href: '/#about', id: 'about' },
-  { label: 'Capabilities', href: '/#capabilities', id: 'capabilities' },
+  { label: 'About', href: '/about', id: 'about', isRoute: true },
+  { label: 'Capabilities', href: '/capabilities', id: 'capabilities', isRoute: true },
   { label: 'Industries', href: '/#industries', id: 'industries' },
-  { label: 'Innovation', href: '/#innovation', id: 'innovation' },
+  { label: 'Innovation', href: '/innovation-lab', id: 'innovation', isRoute: true },
   { label: 'Insights', href: '/#insights', id: 'insights' },
-  { label: 'Careers', href: '/#careers', id: 'careers' },
-  { label: 'Contact', href: '/#contact', id: 'contact' },
+  { label: 'Careers', href: '/careers/opportunities', id: 'careers', isRoute: true },
+  { label: 'Contact', href: '/contact', id: 'contact', isRoute: true },
 ]
 
 export default function Navbar() {
   const { pathname } = useLocation()
-  const isWhatNexisPage = pathname.startsWith('/products/whatnexis') || pathname === '/whatnexis'
+  const isHome = pathname === '/'
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const active = useActiveSection(links.filter((l) => !l.isRoute).map((l) => l.id))
@@ -62,7 +62,9 @@ export default function Navbar() {
 
         <div className="hidden lg:flex items-center gap-0.5">
           {links.map((link) => {
-            const isActive = link.isRoute ? isWhatNexisPage : (!isWhatNexisPage && active === link.id)
+            const isActive = link.isRoute
+              ? (link.href === '/' ? pathname === '/' : pathname.startsWith(link.href))
+              : (isHome && active === link.id)
             const className = `relative px-3.5 py-2 text-sm font-medium rounded-lg transition-colors duration-300 inline-flex items-center gap-1.5 ${
               scrolled
                 ? isActive ? 'text-teal' : 'text-navy hover:text-teal'
@@ -101,14 +103,12 @@ export default function Navbar() {
               </a>
             )
           })}
-          <motion.a
-            href="/#contact"
-            whileHover={{ scale: 1.05, boxShadow: '0 8px 24px rgba(0,201,183,0.35)' }}
-            whileTap={{ scale: 0.95 }}
-            className="ml-4 px-5 py-2.5 bg-teal text-white text-sm font-semibold rounded-full hover:bg-teal-dark transition-colors"
+          <Link
+            to="/contact"
+            className="ml-4 px-5 py-2.5 bg-teal text-white text-sm font-semibold rounded-full hover:bg-teal-dark transition-colors inline-block shadow-sm hover:shadow-md"
           >
             Get in Touch
-          </motion.a>
+          </Link>
         </div>
 
         <button
@@ -132,7 +132,9 @@ export default function Navbar() {
           >
             <div className="px-6 py-5 flex flex-col gap-1">
               {links.map((link, i) => {
-                const isActive = link.isRoute ? isWhatNexisPage : (!isWhatNexisPage && active === link.id)
+                const isActive = link.isRoute
+                  ? (link.href === '/' ? pathname === '/' : pathname.startsWith(link.href))
+                  : (isHome && active === link.id)
                 const mobileClass = `px-4 py-3.5 font-medium rounded-xl flex items-center justify-between transition-colors ${
                   isActive ? 'bg-teal/10 text-teal font-semibold' : 'text-navy hover:bg-teal/5 hover:text-teal'
                 }`
@@ -175,16 +177,13 @@ export default function Navbar() {
                   </motion.a>
                 )
               })}
-              <motion.a
-                href="/#contact"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
+              <Link
+                to="/contact"
                 onClick={() => setOpen(false)}
-                className="mt-3 px-4 py-3.5 bg-teal text-white font-semibold rounded-full text-center"
+                className="mt-3 px-4 py-3.5 bg-teal text-white font-semibold rounded-full text-center block shadow-sm"
               >
                 Get in Touch
-              </motion.a>
+              </Link>
             </div>
           </motion.div>
         )}

@@ -22,6 +22,48 @@ export const PAGE_SEO = {
     ogImage: absoluteImage('/banner.png'),
     type: 'website',
   },
+  about: {
+    title: 'About Us | Pathnexis Solutions Bengaluru',
+    description:
+      'Discover Pathnexis Solutions Pvt. Ltd., an enterprise AI consulting and software development company based in Bengaluru, India. Building intelligent futures.',
+    canonical: absoluteUrl('/about'),
+    keywords: [
+      'About Pathnexis',
+      'Pathnexis Solutions Pvt Ltd',
+      'Bengaluru software company',
+      'AI consulting India',
+    ],
+    ogImage: absoluteImage('/banner.png'),
+    type: 'website',
+  },
+  contact: {
+    title: 'Contact Us | Pathnexis Solutions Bengaluru',
+    description:
+      'Contact Pathnexis Solutions Pvt. Ltd. in Bengaluru, India. Connect with our team for enterprise AI consulting, custom software, and WhatNexis platform.',
+    canonical: absoluteUrl('/contact'),
+    keywords: [
+      'Contact Pathnexis',
+      'Pathnexis Bengaluru office',
+      'software inquiry Bengaluru',
+      'AI consultation',
+    ],
+    ogImage: absoluteImage(SITE.defaultImage),
+    type: 'website',
+  },
+  capabilities: {
+    title: 'Enterprise Capabilities & AI Solutions — Pathnexis',
+    description:
+      'Explore Pathnexis Solutions core capabilities: Digital Intelligence & AI Consulting, Human Capital Development, and Strategic Business Transformation.',
+    canonical: absoluteUrl('/capabilities'),
+    keywords: [
+      'enterprise capabilities',
+      'AI consulting',
+      'digital intelligence',
+      'business transformation',
+    ],
+    ogImage: absoluteImage(SITE.defaultImage),
+    type: 'website',
+  },
   whatnexis: {
     title: 'WhatNexis | WhatsApp Business API & Instagram Automation',
     description:

@@ -27,11 +27,66 @@ export function resolveSeo(pathname) {
       url: PAGE_SEO.home.canonical,
       image: PAGE_SEO.home.ogImage,
       type: PAGE_SEO.home.type,
-      jsonLd: [organizationSchema(), websiteSchema(), localBusinessSchema()],
+      jsonLd: [organizationSchema(), websiteSchema(), localBusinessSchema(), siteNavigationSchema()],
     }
   }
 
-  if (path === '/products/whatnexis' || path === '/whatnexis') {
+  if (path === '/about') {
+    return {
+      title: PAGE_SEO.about.title,
+      description: PAGE_SEO.about.description,
+      keywords: PAGE_SEO.about.keywords,
+      url: PAGE_SEO.about.canonical,
+      image: PAGE_SEO.about.ogImage,
+      type: PAGE_SEO.about.type,
+      jsonLd: [
+        organizationSchema(),
+        breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'About Us', path: '/about' },
+        ]),
+      ],
+    }
+  }
+
+  if (path === '/contact') {
+    return {
+      title: PAGE_SEO.contact.title,
+      description: PAGE_SEO.contact.description,
+      keywords: PAGE_SEO.contact.keywords,
+      url: PAGE_SEO.contact.canonical,
+      image: PAGE_SEO.contact.ogImage,
+      type: PAGE_SEO.contact.type,
+      jsonLd: [
+        organizationSchema(),
+        localBusinessSchema(),
+        breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Contact Us', path: '/contact' },
+        ]),
+      ],
+    }
+  }
+
+  if (path === '/capabilities') {
+    return {
+      title: PAGE_SEO.capabilities.title,
+      description: PAGE_SEO.capabilities.description,
+      keywords: PAGE_SEO.capabilities.keywords,
+      url: PAGE_SEO.capabilities.canonical,
+      image: PAGE_SEO.capabilities.ogImage,
+      type: PAGE_SEO.capabilities.type,
+      jsonLd: [
+        organizationSchema(),
+        breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Capabilities', path: '/capabilities' },
+        ]),
+      ],
+    }
+  }
+
+  if (path === '/products/whatnexis' || path === '/whatnexis' || path === '/products') {
     return {
       title: PAGE_SEO.whatnexis.title,
       description: PAGE_SEO.whatnexis.description,
@@ -426,10 +481,65 @@ function jobPostingSchema(job) {
   }
 }
 
+export function siteNavigationSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Main Navigation Sitelinks',
+    itemListElement: [
+      {
+        '@type': 'SiteNavigationElement',
+        position: 1,
+        name: 'Contact Us',
+        description: 'Get in touch with Pathnexis Solutions in Bengaluru for enterprise AI consulting and software.',
+        url: absoluteUrl('/contact'),
+      },
+      {
+        '@type': 'SiteNavigationElement',
+        position: 2,
+        name: 'WhatNexis Platform',
+        description: 'Explore WhatNexis WhatsApp Business API, Instagram automation, and conversational CRM platform.',
+        url: absoluteUrl('/products/whatnexis'),
+      },
+      {
+        '@type': 'SiteNavigationElement',
+        position: 3,
+        name: 'About Us',
+        description: 'Learn about Pathnexis Solutions history, leadership, vision, and core values.',
+        url: absoluteUrl('/about'),
+      },
+      {
+        '@type': 'SiteNavigationElement',
+        position: 4,
+        name: 'Digital Intelligence & AI',
+        description: 'Enterprise AI consulting, machine learning engineering, and cloud software solutions.',
+        url: absoluteUrl('/capabilities/digital-intelligence'),
+      },
+      {
+        '@type': 'SiteNavigationElement',
+        position: 5,
+        name: 'Innovation Lab',
+        description: 'Applied artificial intelligence research and emerging technology incubation.',
+        url: absoluteUrl('/innovation-lab'),
+      },
+      {
+        '@type': 'SiteNavigationElement',
+        position: 6,
+        name: 'Careers & Opportunities',
+        description: 'Explore engineering, AI consulting, and internship roles at Pathnexis Bengaluru.',
+        url: absoluteUrl('/careers/opportunities'),
+      },
+    ],
+  }
+}
+
 export function getAllSitemapPaths() {
   const paths = [
     '/',
     '/products/whatnexis',
+    '/about',
+    '/contact',
+    '/capabilities',
     '/careers/opportunities',
     '/innovation-lab',
     '/privacy-policy',
