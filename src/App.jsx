@@ -14,6 +14,7 @@ import InnovationLabPage from './pages/InnovationLabPage'
 import CapabilityPage from './pages/CapabilityPage'
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
 import TermsPage from './pages/TermsPage'
+import WhatNexisProductPage from './pages/WhatNexisProductPage'
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation()
@@ -42,6 +43,8 @@ function AppLayout() {
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/products/whatnexis" element={<WhatNexisProductPage />} />
+          <Route path="/whatnexis" element={<WhatNexisProductPage />} />
           <Route path="/careers/opportunities" element={<JobOpeningsPage />} />
           <Route path="/innovation-lab" element={<InnovationLabPage />} />
           <Route path="/capabilities/:capabilitySlug" element={<CapabilityPage />} />

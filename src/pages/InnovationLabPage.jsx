@@ -21,8 +21,9 @@ export default function InnovationLabPage() {
       <section className="relative min-h-[52vh] flex items-end overflow-hidden mesh-bg">
         <img
           src="/insights/category-ai-emerging-technologies.jpg"
-          alt=""
-          aria-hidden="true"
+          alt="Pathnexis Innovation Lab - Applied Artificial Intelligence and Cloud Research"
+          loading="eager"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-cover opacity-35"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-navy-dark/95 via-navy/88 to-navy-dark/75" />

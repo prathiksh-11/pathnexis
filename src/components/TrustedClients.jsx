@@ -62,7 +62,11 @@ export default function TrustedClients() {
                 <div className="h-16 flex items-center mb-4 px-1">
                   <img
                     src={client.logo}
-                    alt={`${client.name} logo`}
+                    alt={`${client.name} partner logo`}
+                    width="160"
+                    height="56"
+                    loading="lazy"
+                    decoding="async"
                     className="max-h-14 max-w-[180px] w-auto object-contain object-left group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
@@ -92,7 +96,11 @@ export default function TrustedClients() {
               >
                 <img
                   src={client.logo}
-                  alt={client.name}
+                  alt={`${client.name} partner logo`}
+                  width="140"
+                  height="40"
+                  loading="lazy"
+                  decoding="async"
                   className="h-10 w-auto max-w-[140px] object-contain"
                 />
               </span>

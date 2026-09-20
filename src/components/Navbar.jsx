@@ -1,11 +1,12 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Sparkles } from 'lucide-react'
 import { useActiveSection } from './ui/Effects'
 
 const links = [
   { label: 'Home', href: '/#home', id: 'home' },
+  { label: 'WhatNexis', href: '/products/whatnexis', id: 'whatnexis', isRoute: true, badge: 'Product' },
   { label: 'About', href: '/#about', id: 'about' },
   { label: 'Capabilities', href: '/#capabilities', id: 'capabilities' },
   { label: 'Industries', href: '/#industries', id: 'industries' },
@@ -16,9 +17,11 @@ const links = [
 ]
 
 export default function Navbar() {
+  const { pathname } = useLocation()
+  const isWhatNexisPage = pathname.startsWith('/products/whatnexis') || pathname === '/whatnexis'
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
-  const active = useActiveSection(links.map((l) => l.id))
+  const active = useActiveSection(links.filter((l) => !l.isRoute).map((l) => l.id))
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -47,7 +50,11 @@ export default function Navbar() {
           <motion.span whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
             <img
               src="/logo.png"
-              alt="Pathnexis"
+              alt="Pathnexis Solutions - AI Consulting & Enterprise Software"
+              width="160"
+              height="40"
+              loading="eager"
+              decoding="async"
               className="h-10 w-auto"
             />
           </motion.span>
@@ -55,18 +62,21 @@ export default function Navbar() {
 
         <div className="hidden lg:flex items-center gap-0.5">
           {links.map((link) => {
-            const isActive = active === link.id
-            return (
-              <a
-                key={link.href}
-                href={link.href}
-                className={`relative px-3.5 py-2 text-sm font-medium rounded-lg transition-colors duration-300 ${
-                  scrolled
-                    ? isActive ? 'text-teal' : 'text-navy hover:text-teal'
-                    : isActive ? 'text-teal-light' : 'text-white/85 hover:text-white'
-                }`}
-              >
-                {link.label}
+            const isActive = link.isRoute ? isWhatNexisPage : (!isWhatNexisPage && active === link.id)
+            const className = `relative px-3.5 py-2 text-sm font-medium rounded-lg transition-colors duration-300 inline-flex items-center gap-1.5 ${
+              scrolled
+                ? isActive ? 'text-teal' : 'text-navy hover:text-teal'
+                : isActive ? 'text-teal-light' : 'text-white/85 hover:text-white'
+            }`
+
+            const content = (
+              <>
+                <span>{link.label}</span>
+                {link.badge && (
+                  <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded-full bg-teal text-white shadow-sm">
+                    {link.badge}
+                  </span>
+                )}
                 {isActive && (
                   <motion.span
                     layoutId="nav-indicator"
@@ -74,6 +84,20 @@ export default function Navbar() {
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
+              </>
+            )
+
+            if (link.isRoute) {
+              return (
+                <Link key={link.href} to={link.href} className={className}>
+                  {content}
+                </Link>
+              )
+            }
+
+            return (
+              <a key={link.href} href={link.href} className={className}>
+                {content}
               </a>
             )
           })}
@@ -107,19 +131,50 @@ export default function Navbar() {
             className="lg:hidden bg-white/95 backdrop-blur-xl border-t border-gray-100 shadow-2xl overflow-hidden"
           >
             <div className="px-6 py-5 flex flex-col gap-1">
-              {links.map((link, i) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                  onClick={() => setOpen(false)}
-                  className="px-4 py-3.5 text-navy font-medium rounded-xl hover:bg-teal/5 hover:text-teal transition-colors"
-                >
-                  {link.label}
-                </motion.a>
-              ))}
+              {links.map((link, i) => {
+                const isActive = link.isRoute ? isWhatNexisPage : (!isWhatNexisPage && active === link.id)
+                const mobileClass = `px-4 py-3.5 font-medium rounded-xl flex items-center justify-between transition-colors ${
+                  isActive ? 'bg-teal/10 text-teal font-semibold' : 'text-navy hover:bg-teal/5 hover:text-teal'
+                }`
+
+                if (link.isRoute) {
+                  return (
+                    <motion.div
+                      key={link.href}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.05 }}
+                    >
+                      <Link
+                        to={link.href}
+                        onClick={() => setOpen(false)}
+                        className={mobileClass}
+                      >
+                        <span>{link.label}</span>
+                        {link.badge && (
+                          <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-teal text-white">
+                            {link.badge}
+                          </span>
+                        )}
+                      </Link>
+                    </motion.div>
+                  )
+                }
+
+                return (
+                  <motion.a
+                    key={link.href}
+                    href={link.href}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                    onClick={() => setOpen(false)}
+                    className={mobileClass}
+                  >
+                    <span>{link.label}</span>
+                  </motion.a>
+                )
+              })}
               <motion.a
                 href="/#contact"
                 initial={{ opacity: 0, y: 10 }}

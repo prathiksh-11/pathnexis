@@ -63,7 +63,15 @@ export default function CtaBanner() {
           className="hidden lg:flex ml-auto items-center"
         >
           <div className="glass rounded-2xl p-6 border border-white/10 max-w-xs">
-            <img src="/logo.png" alt="Pathnexis" className="h-10 mb-4 bg-white rounded-lg px-3 py-2" />
+            <img
+              src="/logo.png"
+              alt="Pathnexis Solutions"
+              width="160"
+              height="40"
+              loading="lazy"
+              decoding="async"
+              className="h-10 w-auto mb-4 bg-white rounded-lg px-3 py-2"
+            />
             <p className="text-white/50 text-xs tracking-widest uppercase">
               Software &bull; Education &bull; Business
             </p>

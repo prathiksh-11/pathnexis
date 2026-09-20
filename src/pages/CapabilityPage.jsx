@@ -40,8 +40,9 @@ export default function CapabilityPage() {
       <section className="relative min-h-[52vh] flex items-end overflow-hidden mesh-bg">
         <img
           src={cap.heroImage}
-          alt=""
-          aria-hidden="true"
+          alt={`${cap.title} Capability Overview - Pathnexis Solutions`}
+          loading="eager"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-cover opacity-35"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-navy-dark/95 via-navy/88 to-navy-dark/75" />

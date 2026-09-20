@@ -59,8 +59,9 @@ export default function JobOpeningsPage() {
         <motion.div className="absolute inset-0">
           <img
             src="/banner.png"
-            alt=""
-            aria-hidden="true"
+            alt="Pathnexis Careers and Life at Pathnexis Solutions"
+            loading="eager"
+            decoding="async"
             className="w-full h-full object-cover object-center opacity-30"
           />
         </motion.div>

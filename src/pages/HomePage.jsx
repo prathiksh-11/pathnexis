@@ -2,6 +2,7 @@ import Hero from '../components/Hero'
 import About from '../components/About'
 import TrustedClients from '../components/TrustedClients'
 import Capabilities from '../components/Capabilities'
+import ProductShowcase from '../components/ProductShowcase'
 import Industries from '../components/Industries'
 import Innovation from '../components/Innovation'
 import Insights from '../components/Insights'
@@ -19,6 +20,7 @@ export default function HomePage() {
         <About />
         <TrustedClients />
         <Capabilities />
+        <ProductShowcase />
         <Industries />
         <Innovation />
         <Insights />

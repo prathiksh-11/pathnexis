@@ -291,7 +291,15 @@ export default function Hero() {
 
                 <div className="relative flex items-center justify-between mb-7">
                   <div className="bg-white rounded-xl px-4 py-3 shadow-lg">
-                    <img src="/logo.png" alt="Pathnexis" className="h-9" />
+                    <img
+                      src="/logo.png"
+                      alt="Pathnexis Solutions Enterprise Software"
+                      width="144"
+                      height="36"
+                      loading="eager"
+                      decoding="async"
+                      className="h-9 w-auto"
+                    />
                   </div>
                   <div className="text-right">
                     <motion.p

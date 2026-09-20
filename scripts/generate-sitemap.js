@@ -36,7 +36,14 @@ const insightArticles = {
 }
 
 function getAllPaths() {
-  const paths = ['/', '/careers/opportunities', '/innovation-lab', '/privacy-policy', '/terms']
+  const paths = [
+    '/',
+    '/products/whatnexis',
+    '/careers/opportunities',
+    '/innovation-lab',
+    '/privacy-policy',
+    '/terms',
+  ]
   capabilitySlugs.forEach((slug) => paths.push(`/capabilities/${slug}`))
   insightCategories.forEach((category) => {
     paths.push(`/insights/${category}`)
@@ -49,7 +56,8 @@ function getAllPaths() {
 
 const priorityMap = {
   '/': '1.0',
-  '/careers/opportunities': '0.9',
+  '/products/whatnexis': '0.9',
+  '/careers/opportunities': '0.8',
   '/innovation-lab': '0.8',
   '/privacy-policy': '0.3',
   '/terms': '0.3',
@@ -64,7 +72,7 @@ function getPriority(path) {
 }
 
 function getChangefreq(path) {
-  if (path === '/' || path === '/careers/opportunities') return 'weekly'
+  if (path === '/' || path === '/careers/opportunities' || path.startsWith('/products/') || path === '/whatnexis') return 'weekly'
   if (path.startsWith('/insights/') && path.split('/').length > 3) return 'monthly'
   if (path.startsWith('/insights/')) return 'weekly'
   if (path === '/privacy-policy' || path === '/terms') return 'yearly'

@@ -4,14 +4,15 @@ import WhatsAppIcon from './icons/WhatsAppIcon'
 import SocialLinks from './SocialLinks'
 
 const quickLinks = [
+  { label: 'WhatNexis Growth Suite', href: '/products/whatnexis', isRoute: true },
   { label: 'About', href: '/#about' },
   { label: 'Capabilities', href: '/#capabilities' },
   { label: 'Industries', href: '/#industries' },
   { label: 'Innovation', href: '/#innovation' },
-  { label: 'Innovation Lab', href: '/innovation-lab' },
+  { label: 'Innovation Lab', href: '/innovation-lab', isRoute: true },
   { label: 'Insights', href: '/#insights' },
   { label: 'Careers', href: '/#careers' },
-  { label: 'Open Opportunities', href: '/careers/opportunities' },
+  { label: 'Open Opportunities', href: '/careers/opportunities', isRoute: true },
   { label: 'Contact', href: '/#contact' },
 ]
 
@@ -35,7 +36,15 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-12">
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="inline-block bg-white rounded-xl px-4 py-2 mb-6">
-              <img src="/logo.png" alt="Pathnexis" className="h-10" />
+              <img
+                src="/logo.png"
+                alt="Pathnexis Solutions Pvt. Ltd. Logo"
+                width="160"
+                height="40"
+                loading="lazy"
+                decoding="async"
+                className="h-10 w-auto"
+              />
             </div>
             <p className="text-2xl font-bold mb-2">
               Building <span className="text-teal">Intelligent</span> Futures
@@ -43,10 +52,22 @@ export default function Footer() {
             <p className="text-white/50 text-sm tracking-widest uppercase mb-4">
               Intelligence. Innovation. Impact.
             </p>
-            <p className="text-white/60 text-sm leading-relaxed max-w-sm mb-6">
+            <p className="text-white/60 text-sm leading-relaxed max-w-sm mb-4">
               PATHNEXIS SOLUTIONS PVT. LTD. — Empowering organizations through
               technology, capability development, and strategic transformation.
             </p>
+            <div className="mb-6 p-3.5 rounded-xl bg-white/5 border border-white/10 max-w-sm">
+              <div className="text-[11px] font-semibold uppercase tracking-wider text-teal-light mb-1">
+                Featured Product
+              </div>
+              <Link
+                to="/products/whatnexis"
+                className="text-sm font-bold text-white hover:text-teal-light transition-colors flex items-center justify-between group"
+              >
+                <span>WhatNexis — WhatsApp &amp; AI Platform</span>
+                <span className="text-xs text-teal group-hover:translate-x-1 transition-transform">→</span>
+              </Link>
+            </div>
             <div>
               <p className="text-white/80 font-medium text-sm mb-3">Follow Us</p>
               <SocialLinks variant="dark" />
@@ -58,12 +79,21 @@ export default function Footer() {
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="text-white/60 text-sm hover:text-teal-light transition-colors"
-                  >
-                    {link.label}
-                  </a>
+                  {link.isRoute ? (
+                    <Link
+                      to={link.href}
+                      className="text-white/60 text-sm hover:text-teal-light transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      className="text-white/60 text-sm hover:text-teal-light transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>

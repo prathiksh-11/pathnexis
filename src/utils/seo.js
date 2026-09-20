@@ -1,10 +1,13 @@
 import { SITE, absoluteImage, absoluteUrl } from '../config/site'
+import { PAGE_SEO } from '../config/seo'
 import { capabilityList } from '../data/capabilities'
 import { insightCategories, insightArticles } from '../data/insights'
 import { jobs } from '../data/jobs'
+import { whatnexisData } from '../data/products/whatnexis'
 
 export function buildTitle(pageTitle) {
   if (!pageTitle) return `${SITE.name} | ${SITE.tagline}`
+  if (pageTitle.includes(SITE.name) || pageTitle.includes('WhatNexis')) return pageTitle
   return `${pageTitle} | ${SITE.name}`
 }
 
@@ -18,25 +21,36 @@ export function resolveSeo(pathname) {
 
   if (path === '/') {
     return {
-      title: buildTitle(SITE.tagline),
-      description: SITE.description,
-      keywords: SITE.keywords,
-      url: absoluteUrl('/'),
-      image: absoluteImage(SITE.defaultImage),
-      type: 'website',
+      title: PAGE_SEO.home.title,
+      description: PAGE_SEO.home.description,
+      keywords: PAGE_SEO.home.keywords,
+      url: PAGE_SEO.home.canonical,
+      image: PAGE_SEO.home.ogImage,
+      type: PAGE_SEO.home.type,
       jsonLd: [organizationSchema(), websiteSchema(), localBusinessSchema()],
+    }
+  }
+
+  if (path === '/products/whatnexis' || path === '/whatnexis') {
+    return {
+      title: PAGE_SEO.whatnexis.title,
+      description: PAGE_SEO.whatnexis.description,
+      keywords: PAGE_SEO.whatnexis.keywords,
+      url: PAGE_SEO.whatnexis.canonical, // Canonical is always /products/whatnexis
+      image: PAGE_SEO.whatnexis.ogImage,
+      type: PAGE_SEO.whatnexis.type,
+      jsonLd: whatnexisData.jsonLd,
     }
   }
 
   if (path === '/careers/opportunities') {
     return {
-      title: buildTitle('Careers & Open Opportunities'),
-      description:
-        'Join Pathnexis Solutions in Bengaluru. Explore careers, internships, graduate programs, and open roles in engineering, data analytics, and creative — build intelligent futures with us.',
-      keywords: [...SITE.keywords, 'careers', 'jobs', 'internships', 'hiring Bengaluru'],
-      url: absoluteUrl('/careers/opportunities'),
-      image: absoluteImage(SITE.defaultImage),
-      type: 'website',
+      title: PAGE_SEO.careers.title,
+      description: PAGE_SEO.careers.description,
+      keywords: PAGE_SEO.careers.keywords,
+      url: PAGE_SEO.careers.canonical,
+      image: PAGE_SEO.careers.ogImage,
+      type: PAGE_SEO.careers.type,
       jsonLd: [
         organizationSchema(),
         breadcrumbSchema([
@@ -50,13 +64,12 @@ export function resolveSeo(pathname) {
 
   if (path === '/innovation-lab') {
     return {
-      title: buildTitle('Innovation Lab'),
-      description:
-        'Explore the Pathnexis Innovation Lab — research and experimentation in AI, future of work, learning technologies, automation, and digital ecosystems that shape tomorrow\'s organizations.',
-      keywords: [...SITE.keywords, 'innovation lab', 'AI research', 'emerging technology'],
-      url: absoluteUrl('/innovation-lab'),
-      image: absoluteImage('/banner.png'),
-      type: 'website',
+      title: PAGE_SEO.innovationLab.title,
+      description: PAGE_SEO.innovationLab.description,
+      keywords: PAGE_SEO.innovationLab.keywords,
+      url: PAGE_SEO.innovationLab.canonical,
+      image: PAGE_SEO.innovationLab.ogImage,
+      type: PAGE_SEO.innovationLab.type,
       jsonLd: [
         organizationSchema(),
         breadcrumbSchema([
@@ -69,12 +82,12 @@ export function resolveSeo(pathname) {
 
   if (path === '/privacy-policy') {
     return {
-      title: buildTitle('Privacy Policy'),
-      description:
-        'Privacy Policy for Pathnexis Solutions Pvt. Ltd. Learn how we collect, use, and protect personal information for clients, visitors, job applicants, and learners.',
-      url: absoluteUrl('/privacy-policy'),
-      image: absoluteImage(SITE.logo),
-      type: 'website',
+      title: PAGE_SEO.privacyPolicy.title,
+      description: PAGE_SEO.privacyPolicy.description,
+      keywords: PAGE_SEO.privacyPolicy.keywords,
+      url: PAGE_SEO.privacyPolicy.canonical,
+      image: PAGE_SEO.privacyPolicy.ogImage,
+      type: PAGE_SEO.privacyPolicy.type,
       noindex: false,
       jsonLd: [
         organizationSchema(),
@@ -88,12 +101,12 @@ export function resolveSeo(pathname) {
 
   if (path === '/terms') {
     return {
-      title: buildTitle('Terms & Conditions'),
-      description:
-        'Terms and Conditions governing use of Pathnexis Solutions website, services, and digital platforms. Effective June 2026.',
-      url: absoluteUrl('/terms'),
-      image: absoluteImage(SITE.logo),
-      type: 'website',
+      title: PAGE_SEO.terms.title,
+      description: PAGE_SEO.terms.description,
+      keywords: PAGE_SEO.terms.keywords,
+      url: PAGE_SEO.terms.canonical,
+      image: PAGE_SEO.terms.ogImage,
+      type: PAGE_SEO.terms.type,
       jsonLd: [
         organizationSchema(),
         breadcrumbSchema([
@@ -106,12 +119,22 @@ export function resolveSeo(pathname) {
 
   const capabilityMatch = path.match(/^\/capabilities\/([^/]+)$/)
   if (capabilityMatch) {
-    const cap = capabilityList.find((c) => c.slug === capabilityMatch[1])
+    const slug = capabilityMatch[1]
+    const cap = capabilityList.find((c) => c.slug === slug)
+    const pageConfig =
+      slug === 'digital-intelligence'
+        ? PAGE_SEO.digitalIntelligence
+        : slug === 'human-capital'
+        ? PAGE_SEO.humanCapital
+        : slug === 'business-transformation'
+        ? PAGE_SEO.businessTransformation
+        : null
+
     if (cap) {
       return {
-        title: buildTitle(`${cap.title} — ${cap.subtitle}`),
-        description: truncate(cap.heroTagline || cap.outcome),
-        keywords: [...SITE.keywords, cap.title, ...cap.services.slice(0, 8)],
+        title: pageConfig?.title || buildTitle(`${cap.title} — ${cap.subtitle}`),
+        description: pageConfig?.description || truncate(cap.heroTagline || cap.outcome),
+        keywords: pageConfig?.keywords || [...SITE.keywords, cap.title, ...cap.services.slice(0, 6)],
         url: absoluteUrl(`/capabilities/${cap.slug}`),
         image: absoluteImage(cap.heroImage || SITE.defaultImage),
         type: 'website',
@@ -404,7 +427,14 @@ function jobPostingSchema(job) {
 }
 
 export function getAllSitemapPaths() {
-  const paths = ['/', '/careers/opportunities', '/innovation-lab', '/privacy-policy', '/terms']
+  const paths = [
+    '/',
+    '/products/whatnexis',
+    '/careers/opportunities',
+    '/innovation-lab',
+    '/privacy-policy',
+    '/terms',
+  ]
 
   capabilityList.forEach((cap) => paths.push(`/capabilities/${cap.slug}`))
 
