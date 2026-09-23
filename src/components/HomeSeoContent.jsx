@@ -25,9 +25,22 @@ export default function HomeSeoContent() {
               WhatNexis
             </Link>
             , is an all-in-one conversational growth engine providing official{' '}
-            <strong>Meta WhatsApp Business API</strong> onboarding, <strong>Instagram DM automation</strong>,{' '}
-            <strong>5-star Google Reviews management</strong>, and autonomous <strong>AI customer support chatbots</strong>.
-            With 98% message open rates, sub-30 second template approvals, and native UPI/Razorpay in-chat payments,
+            <Link to="/products/whatnexis/whatsapp-automation" className="text-navy font-semibold hover:text-teal underline">
+              Meta WhatsApp Business API
+            </Link>{' '}
+            onboarding,{' '}
+            <Link to="/products/whatnexis/instagram-automation" className="text-navy font-semibold hover:text-teal underline">
+              Instagram DM automation
+            </Link>
+            ,{' '}
+            <Link to="/products/whatnexis/google-reviews" className="text-navy font-semibold hover:text-teal underline">
+              5-star Google Reviews management
+            </Link>
+            , and autonomous{' '}
+            <Link to="/products/whatnexis/ai-chatbot" className="text-navy font-semibold hover:text-teal underline">
+              AI customer support chatbots
+            </Link>
+            . With 98% message open rates, sub-30 second template approvals, and native UPI/Razorpay in-chat payments,
             WhatNexis scales customer outreach with 100% DPDP Act and Indian cloud data compliance.
           </p>
           <p className="text-slate leading-relaxed mb-4">

@@ -1,4 +1,34 @@
+# Robots.txt for Pathnexis Solutions & WhatNexis Platform
+# https://pathnexis.in
+
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /preview/
+Disallow: /*?*preview=true
 
 Sitemap: https://pathnexis.in/sitemap.xml

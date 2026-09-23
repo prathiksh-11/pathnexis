@@ -19,6 +19,14 @@ import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
 import CapabilitiesIndexPage from './pages/CapabilitiesIndexPage'
 
+// Dedicated WhatNexis Feature Landing Pages
+import WhatsAppAutomationPage from './pages/whatnexis/WhatsAppAutomationPage'
+import InstagramAutomationPage from './pages/whatnexis/InstagramAutomationPage'
+import AiChatbotPage from './pages/whatnexis/AiChatbotPage'
+import CrmSharedInboxPage from './pages/whatnexis/CrmSharedInboxPage'
+import GoogleReviewsPage from './pages/whatnexis/GoogleReviewsPage'
+import PricingPage from './pages/whatnexis/PricingPage'
+
 function ScrollToTop() {
   const { pathname, hash } = useLocation()
 
@@ -50,9 +58,21 @@ function AppLayout() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/capabilities" element={<CapabilitiesIndexPage />} />
           <Route path="/capabilities/:capabilitySlug" element={<CapabilityPage />} />
+
+          {/* WhatNexis Flagship Hub & Aliases */}
           <Route path="/products" element={<WhatNexisProductPage />} />
           <Route path="/products/whatnexis" element={<WhatNexisProductPage />} />
           <Route path="/whatnexis" element={<WhatNexisProductPage />} />
+
+          {/* WhatNexis Dedicated Feature & Solution Pages */}
+          <Route path="/products/whatnexis/whatsapp-automation" element={<WhatsAppAutomationPage />} />
+          <Route path="/products/whatnexis/instagram-automation" element={<InstagramAutomationPage />} />
+          <Route path="/products/whatnexis/ai-chatbot" element={<AiChatbotPage />} />
+          <Route path="/products/whatnexis/crm" element={<CrmSharedInboxPage />} />
+          <Route path="/products/whatnexis/google-reviews" element={<GoogleReviewsPage />} />
+          <Route path="/products/whatnexis/pricing" element={<PricingPage />} />
+
+          {/* Company & Content Pages */}
           <Route path="/careers" element={<JobOpeningsPage />} />
           <Route path="/careers/opportunities" element={<JobOpeningsPage />} />
           <Route path="/innovation-lab" element={<InnovationLabPage />} />

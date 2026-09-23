@@ -1,6 +1,6 @@
-import { insightCategories } from './categories'
-import { insightArticles } from './articles'
-import { insightContent } from './content'
+import { insightCategories } from './categories.js'
+import { insightArticles } from './articles.js'
+import { insightContent } from './content.js'
 
 export { insightCategories, insightArticles, insightContent }
 

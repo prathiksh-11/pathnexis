@@ -1,6 +1,6 @@
-import digitalIntelligence from './digitalIntelligence'
-import humanCapital from './humanCapital'
-import businessTransformation from './businessTransformation'
+import digitalIntelligence from './digitalIntelligence.js'
+import humanCapital from './humanCapital.js'
+import businessTransformation from './businessTransformation.js'
 
 export const capabilityList = [digitalIntelligence, humanCapital, businessTransformation]
 
