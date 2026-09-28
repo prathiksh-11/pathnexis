@@ -6,6 +6,18 @@ import { whatnexisAiChatbotSeo } from './pages/whatnexis-ai-chatbot.js'
 import { whatnexisCrmSeo } from './pages/whatnexis-crm.js'
 import { whatnexisReviewsSeo } from './pages/whatnexis-reviews.js'
 import { whatnexisPricingSeo } from './pages/whatnexis-pricing.js'
+import {
+  whatsappBusinessApiIndiaSeo,
+  whatsappApiPricingSeo,
+  instagramDmAutomationSeo,
+  googleReviewsAutomationSeo,
+  shopifyD2cCrmSeo,
+  whatnexisVsWatiSeo,
+  watiAlternativesSeo,
+  blogAppVsApiSeo,
+  blogGreenTickSeo,
+  blogTemplatesSeo,
+} from './pages/seo-landing-pages.js'
 import { capabilityList } from '../data/capabilities/index.js'
 import { insightCategories, insightArticles } from '../data/insights/index.js'
 import { constructPageSeo } from './config.js'
@@ -47,7 +59,24 @@ export const staticRoutes = {
   '/products/whatnexis/crm': whatnexisCrmSeo,
   '/products/whatnexis/google-reviews': whatnexisReviewsSeo,
   '/products/whatnexis/pricing': whatnexisPricingSeo,
+
+  // High-Intent SEO & Commercial Routes
+  '/whatsapp-business-api-india': whatsappBusinessApiIndiaSeo,
+  '/whatsapp-api-pricing': whatsappApiPricingSeo,
+  '/instagram-dm-automation': instagramDmAutomationSeo,
+  '/google-reviews-automation': googleReviewsAutomationSeo,
+  '/whatsapp-crm-shopify-d2c': shopifyD2cCrmSeo,
+
+  // Competitor Comparison Pages
+  '/whatnexis-vs-wati': whatnexisVsWatiSeo,
+  '/wati-alternatives-india': watiAlternativesSeo,
+
+  // Full-Length Pillar Blog Posts
+  '/blog/whatsapp-business-app-vs-api': blogAppVsApiSeo,
+  '/blog/how-to-get-whatsapp-green-tick-india': blogGreenTickSeo,
+  '/blog/how-to-get-whatsapp-template-approved': blogTemplatesSeo,
 }
+
 
 /**
  * Resolves SEO configuration for any static or dynamic pathname.
@@ -163,6 +192,23 @@ export function getAllIndexableRoutes() {
     { path: '/products/whatnexis/crm', priority: 0.9, changefreq: 'weekly' },
     { path: '/products/whatnexis/google-reviews', priority: 0.9, changefreq: 'weekly' },
     { path: '/products/whatnexis/pricing', priority: 0.9, changefreq: 'weekly' },
+
+    // Dedicated High-Intent SEO & Commercial Routes
+    { path: '/whatsapp-business-api-india', priority: 0.95, changefreq: 'weekly' },
+    { path: '/whatsapp-api-pricing', priority: 0.95, changefreq: 'weekly' },
+    { path: '/instagram-dm-automation', priority: 0.9, changefreq: 'weekly' },
+    { path: '/google-reviews-automation', priority: 0.9, changefreq: 'weekly' },
+    { path: '/whatsapp-crm-shopify-d2c', priority: 0.9, changefreq: 'weekly' },
+
+    // Competitor Comparison Pages
+    { path: '/whatnexis-vs-wati', priority: 0.85, changefreq: 'weekly' },
+    { path: '/wati-alternatives-india', priority: 0.85, changefreq: 'weekly' },
+
+    // Full-Length Pillar Blog Guides
+    { path: '/blog/whatsapp-business-app-vs-api', priority: 0.8, changefreq: 'monthly' },
+    { path: '/blog/how-to-get-whatsapp-green-tick-india', priority: 0.8, changefreq: 'monthly' },
+    { path: '/blog/how-to-get-whatsapp-template-approved', priority: 0.8, changefreq: 'monthly' },
+
     { path: '/about', priority: 0.85, changefreq: 'monthly' },
     { path: '/contact', priority: 0.85, changefreq: 'monthly' },
     { path: '/capabilities', priority: 0.85, changefreq: 'monthly' },
@@ -171,6 +217,7 @@ export function getAllIndexableRoutes() {
     { path: '/privacy-policy', priority: 0.3, changefreq: 'yearly' },
     { path: '/terms', priority: 0.3, changefreq: 'yearly' },
   ]
+
 
   // Capabilities
   capabilityList.forEach((cap) => {

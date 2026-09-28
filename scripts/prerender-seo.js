@@ -54,7 +54,53 @@ function buildPrerenderContent(path, seo) {
 
   let bodyHtml
 
-  if (path === '/products/whatnexis' || path === '/whatnexis' || path === '/products') {
+  if (path === '/') {
+    bodyHtml = `
+      <section style="margin: 2rem 0;">
+        <h2 style="font-size: 1.75rem; font-weight: 700; color: #0f2b5c; margin-bottom: 1rem;">
+          Official WhatsApp Business API &amp; Instagram DM Automation Platform
+        </h2>
+        <p style="font-size: 1.125rem; color: #475569; line-height: 1.7; margin-bottom: 1.5rem;">
+          Connect with high-intent shoppers, automate customer support, and convert social followers into revenue on India's favorite messaging apps. WhatNexis by Pathnexis Solutions provides an official <strong>WhatsApp Business API and Instagram DM automation platform</strong> built specifically for Indian SMBs, fast-growing D2C brands, and digital marketing agencies. Plans start at just ₹1,499 per month plus 18% GST.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+          <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1rem; padding: 1.5rem;">
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f2b5c;">
+              <a href="/whatsapp-business-api-india" style="color: #0f2b5c; text-decoration: none;">WhatsApp Business API India</a>
+            </h3>
+            <p style="font-size: 0.875rem; color: #475569; margin: 0.5rem 0 1rem;">Official Meta Cloud API broadcasting with 98% open rates, 24/7 AI chatbots, and multi-agent shared inbox.</p>
+            <a href="/whatsapp-business-api-india" style="color: #00c9b7; font-weight: 600; font-size: 0.875rem;">Explore WhatsApp API &rarr;</a>
+          </div>
+
+          <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1rem; padding: 1.5rem;">
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f2b5c;">
+              <a href="/instagram-dm-automation" style="color: #0f2b5c; text-decoration: none;">Instagram DM Automation</a>
+            </h3>
+            <p style="font-size: 0.875rem; color: #475569; margin: 0.5rem 0 1rem;">Auto-reply to Reel comments, capture Story mentions, and send instant product checkout cards in DM.</p>
+            <a href="/instagram-dm-automation" style="color: #00c9b7; font-weight: 600; font-size: 0.875rem;">Explore Instagram DM &rarr;</a>
+          </div>
+
+          <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1rem; padding: 1.5rem;">
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f2b5c;">
+              <a href="/whatsapp-crm-shopify-d2c" style="color: #0f2b5c; text-decoration: none;">WhatsApp CRM for Shopify &amp; D2C</a>
+            </h3>
+            <p style="font-size: 0.875rem; color: #475569; margin: 0.5rem 0 1rem;">Slash COD RTO losses with automated order verification and recover up to 25% of abandoned carts.</p>
+            <a href="/whatsapp-crm-shopify-d2c" style="color: #00c9b7; font-weight: 600; font-size: 0.875rem;">Explore Shopify CRM &rarr;</a>
+          </div>
+
+          <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1rem; padding: 1.5rem;">
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f2b5c;">
+              <a href="/whatsapp-api-pricing" style="color: #0f2b5c; text-decoration: none;">WhatsApp API Pricing India</a>
+            </h3>
+            <p style="font-size: 0.875rem; color: #475569; margin: 0.5rem 0 1rem;">Plans starting at ₹1,499/mo plus 18% GST with zero markup on official Meta per-message conversation rates.</p>
+            <a href="/whatsapp-api-pricing" style="color: #00c9b7; font-weight: 600; font-size: 0.875rem;">View Pricing Plans &rarr;</a>
+          </div>
+        </div>
+      </section>
+    `
+  } else if (path === '/products/whatnexis' || path === '/whatnexis' || path === '/products') {
+
     bodyHtml = `
       <section style="margin: 2rem 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
         ${whatnexisData.stats
@@ -268,13 +314,17 @@ const routesToPrerender = [
 
 let count = 0
 for (const path of routesToPrerender) {
-  if (path === '/') continue // Root is already handled by dist/index.html
   const seo = getSeoForRoute(path)
   const rendered = renderHtml(path, seo)
-  const targetDir = join(distDir, path.replace(/^\//, ''))
-  mkdirSync(targetDir, { recursive: true })
-  writeFileSync(join(targetDir, 'index.html'), rendered, 'utf-8')
+  if (path === '/') {
+    writeFileSync(distIndex, rendered, 'utf-8')
+  } else {
+    const targetDir = join(distDir, path.replace(/^\//, ''))
+    mkdirSync(targetDir, { recursive: true })
+    writeFileSync(join(targetDir, 'index.html'), rendered, 'utf-8')
+  }
   count++
 }
+
 
 console.log(`Prerendered ${count} static SEO pages with full HTML, meta tags, and JSON-LD schema into dist/`)

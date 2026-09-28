@@ -151,6 +151,119 @@ export const internalLinkRegistry = [
     description: 'Speak with our Bengaluru onboarding engineers for bespoke volume pricing and API setup.',
     category: 'conversion',
   },
+
+  // Shopify CRM -> Cross-links
+  {
+    source: '/whatsapp-crm-shopify-d2c',
+    target: '/whatsapp-api-pricing',
+    anchorText: 'Transparent WhatsApp API Pricing',
+    description: 'Explore plans starting at ₹1,499/mo plus 18% GST with zero Meta message markup.',
+    category: 'pricing',
+  },
+  {
+    source: '/whatsapp-crm-shopify-d2c',
+    target: '/whatsapp-business-api-india',
+    anchorText: 'Official WhatsApp Business API Platform',
+    description: 'High-volume promotional broadcasts, verified alerts, and multi-agent shared inbox.',
+    category: 'feature',
+  },
+  {
+    source: '/whatsapp-crm-shopify-d2c',
+    target: '/wati-alternatives-india',
+    anchorText: 'Top Wati Alternatives for D2C Brands',
+    description: 'Compare WhatNexis against other WhatsApp tools for Indian e-commerce.',
+    category: 'comparison',
+  },
+
+  // WhatNexis vs Wati -> Cross-links
+  {
+    source: '/whatnexis-vs-wati',
+    target: '/whatsapp-api-pricing',
+    anchorText: 'Transparent INR Pricing Breakdown',
+    description: 'See how WhatNexis ₹1,499/mo compares with Wati USD subscription tiers.',
+    category: 'pricing',
+  },
+  {
+    source: '/whatnexis-vs-wati',
+    target: '/wati-alternatives-india',
+    anchorText: 'All Top Wati Alternatives in India',
+    description: 'Compare WhatNexis, Interakt, AiSensy, and DoubleTick side-by-side.',
+    category: 'comparison',
+  },
+  {
+    source: '/whatnexis-vs-wati',
+    target: '/whatsapp-business-api-india',
+    anchorText: 'Official WhatsApp Business API Suite',
+    description: 'Explore Meta Cloud API features, broadcast speeds, and 24/7 AI chatbots.',
+    category: 'feature',
+  },
+
+  // Wati Alternatives -> Cross-links
+  {
+    source: '/wati-alternatives-india',
+    target: '/whatnexis-vs-wati',
+    anchorText: 'Head-to-Head: WhatNexis vs Wati',
+    description: 'In-depth comparison of features, INR pricing, and local customer support.',
+    category: 'comparison',
+  },
+  {
+    source: '/wati-alternatives-india',
+    target: '/whatsapp-api-pricing',
+    anchorText: 'WhatNexis Transparent Pricing in INR',
+    description: 'Subscriptions starting from ₹1,499/mo plus 18% GST with zero markup.',
+    category: 'pricing',
+  },
+  {
+    source: '/wati-alternatives-india',
+    target: '/whatsapp-crm-shopify-d2c',
+    anchorText: 'WhatsApp CRM for Shopify Stores',
+    description: 'Automate COD confirmation, recover abandoned checkouts, and track parcels.',
+    category: 'feature',
+  },
+
+  // Blog Guides -> Cross-links
+  {
+    source: '/blog/whatsapp-business-app-vs-api',
+    target: '/whatsapp-business-api-india',
+    anchorText: 'Official WhatsApp Business API Platform',
+    description: 'Upgrade from the free app to official Meta Cloud API broadcasts and shared inbox.',
+    category: 'feature',
+  },
+  {
+    source: '/blog/whatsapp-business-app-vs-api',
+    target: '/whatsapp-api-pricing',
+    anchorText: 'WhatsApp API Pricing and Meta Charges',
+    description: 'Understand subscription costs and per-message rates in Indian Rupees.',
+    category: 'pricing',
+  },
+  {
+    source: '/blog/how-to-get-whatsapp-green-tick-india',
+    target: '/whatsapp-business-api-india',
+    anchorText: 'WhatsApp Business API Onboarding',
+    description: 'Get verified on Meta Cloud API and establish high-quality messaging tiers.',
+    category: 'feature',
+  },
+  {
+    source: '/blog/how-to-get-whatsapp-green-tick-india',
+    target: '/whatnexis-vs-wati',
+    anchorText: 'Compare WhatNexis vs Wati',
+    description: 'Discover how WhatNexis assists Indian brands with green tick verification.',
+    category: 'comparison',
+  },
+  {
+    source: '/blog/how-to-get-whatsapp-template-approved',
+    target: '/whatsapp-business-api-india',
+    anchorText: 'WhatsApp API Message Automation',
+    description: 'Broadcast pre-approved templates with 98% open rates and sub-30s delivery.',
+    category: 'feature',
+  },
+  {
+    source: '/blog/how-to-get-whatsapp-template-approved',
+    target: '/whatsapp-api-pricing',
+    anchorText: 'Meta Message Conversation Rates',
+    description: 'Marketing vs Utility rates explained in Indian Rupees.',
+    category: 'pricing',
+  },
 ]
 
 /**
@@ -159,6 +272,7 @@ export const internalLinkRegistry = [
  */
 export function getInternalLinksForRoute(pathname = '/') {
   const cleanPath = pathname.split('?')[0].split('#')[0]
+
 
   const directMatches = internalLinkRegistry.filter((link) => link.source === cleanPath)
   if (directMatches.length > 0) {

@@ -139,7 +139,7 @@ export function generateBreadcrumbSchema(items) {
  * Generates Schema.org SoftwareApplication structured data for WhatNexis.
  * Accurately represents business application capabilities, OS compatibility, and real pricing.
  */
-export function generateSoftwareApplicationSchema(seo, options = {}) {
+export function generateSoftwareApplicationSchema(seo = {}, options = {}) {
   const defaultOffers = [
     {
       '@type': 'Offer',
@@ -173,18 +173,21 @@ export function generateSoftwareApplicationSchema(seo, options = {}) {
     },
   ]
 
+  const canonicalUrl = seo?.canonical || `${siteConfig.baseUrl}/products/whatnexis`
+
   return {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    '@id': `${seo.canonical}/#software`,
+    '@id': `${canonicalUrl}/#software`,
     name: options.name || siteConfig.productName,
     alternateName: 'WhatNexis Conversational Growth Suite',
     applicationCategory: 'BusinessApplication',
     applicationSubCategory: 'WhatsApp Marketing & CRM Software',
     operatingSystem: 'Cloud, Web, Mobile (iOS, Android)',
-    url: seo.canonical,
-    image: buildAbsoluteUrl(seo.ogImage || siteConfig.defaultOgImage),
-    description: seo.description,
+    url: canonicalUrl,
+    image: buildAbsoluteUrl(seo?.ogImage || siteConfig.defaultOgImage),
+    description: seo?.description || siteConfig.description,
+
     author: {
       '@id': `${siteConfig.baseUrl}/#organization`,
     },
@@ -256,3 +259,6 @@ export function generateFAQSchema(faqs = []) {
     })),
   }
 }
+
+export const generateFaqSchema = generateFAQSchema
+

@@ -5,35 +5,70 @@ import {
   generateLocalBusinessSchema,
   generateBreadcrumbSchema,
   generateWebPageSchema,
+  generateFaqSchema,
+  generateSoftwareApplicationSchema,
 } from '../schema.js'
 import { getBreadcrumbsForRoute } from '../breadcrumbs.js'
+
 
 export const homeSeo = constructPageSeo({
   route: '/',
   classification: 'INDEX',
   indexable: true,
-  title: 'Pathnexis Solutions | Enterprise AI & WhatsApp Automation Platform',
+  title: 'WhatNexis | WhatsApp & Instagram Automation Platform',
   description:
-    'Pathnexis Solutions delivers enterprise AI consulting, custom software, and WhatNexis — India’s leading WhatsApp Business API, Instagram automation, and CRM platform.',
-  primaryKeyword: 'enterprise AI consulting and WhatsApp automation platform',
+    'Grow your business with official WhatsApp Business API, Instagram DM automation, AI chatbots, and CRM. Plans start at ₹1,499/mo. Book your free live demo.',
+  primaryKeyword: 'WhatsApp Business API and Instagram DM automation platform',
   secondaryKeywords: [
-    'Pathnexis Solutions',
-    'WhatNexis',
     'WhatsApp Business API India',
-    'Bengaluru software company',
-    'enterprise conversational AI',
+    'Instagram DM automation',
+    'WhatNexis',
+    'Pathnexis Solutions',
+    'WhatsApp marketing software',
+    'WhatsApp CRM',
+    'Wati alternative',
   ],
-  intent: 'navigational',
+  intent: 'commercial',
   ogImage: '/banner.png',
   changeFrequency: 'weekly',
   priority: 1.0,
   breadcrumb: getBreadcrumbsForRoute('/'),
+  faqList: [
+    {
+      question: 'What is the difference between WhatNexis and the free WhatsApp Business App?',
+      answer:
+        'The free WhatsApp Business App runs on a single physical phone, limits broadcast lists to 256 contacts who must save your number, and risks account bans if overused. WhatNexis uses the official Meta WhatsApp Business API, allowing unlimited broadcasts to opted-in users, multi-agent desktop logins, automated chatbots, and CRM integrations without phone hardware.',
+    },
+    {
+      question: 'Do I get a valid GST invoice for input tax credit?',
+      answer:
+        'Yes. Pathnexis Solutions Pvt. Ltd. is registered in Bengaluru, Karnataka. All subscription invoices and Meta API wallet recharges include 18% GST with your business GSTIN clearly stated, allowing you to claim 100% Input Tax Credit (ITC).',
+    },
+    {
+      question: 'Can I keep using my existing business phone number?',
+      answer:
+        'Yes. You can onboard your existing number onto the WhatsApp Business API. Note that the number must first be deleted from the standard WhatsApp mobile app before Meta can activate it on the Cloud API. Our onboarding team assists you through this entire process.',
+    },
+    {
+      question: 'How does Instagram DM automation comply with Meta\'s policies?',
+      answer:
+        'WhatNexis connects directly via Meta\'s official Instagram Graph API. All automated comment replies and story mention responses follow Meta\'s approved automation guidelines, keeping your Instagram account completely safe from shadowbans or restrictions.',
+    },
+    {
+      question: 'How quickly can our team get started?',
+      answer:
+        'Most Indian businesses complete Meta Business Manager verification and launch their first WhatsApp broadcast within 2 to 4 business days with help from our dedicated Bengaluru support team.',
+    },
+  ],
 })
 homeSeo.jsonLd = [
   generateOrganizationSchema(),
   generateWebSiteSchema(),
   generateLocalBusinessSchema(),
+  generateSoftwareApplicationSchema(),
+  generateFaqSchema(homeSeo.faqList),
 ]
+
 
 export const aboutSeo = constructPageSeo({
   route: '/about',
