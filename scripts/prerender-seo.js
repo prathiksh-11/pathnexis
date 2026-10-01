@@ -5,6 +5,7 @@ import process from 'node:process'
 import { getSeoForRoute, getAllIndexableRoutes } from '../src/seo/routes.js'
 import { siteConfig } from '../src/seo/site.js'
 import { whatnexisData } from '../src/data/products/whatnexis.js'
+import { blogArticles } from '../src/seo/pages/blog-index.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, '..')
@@ -169,6 +170,25 @@ function buildPrerenderContent(path, seo) {
             <a href="/products/whatnexis/pricing" style="color: #00c9b7; font-weight: 600; font-size: 0.875rem;">View Full INR Pricing &rarr;</a>
           </div>
         </div>
+      </section>
+    `
+  } else if (path === '/blog') {
+    bodyHtml = `
+      <section style="margin: 2rem 0;">
+        <h2 style="font-size: 1.75rem; font-weight: 700; color: #0f2b5c; margin-bottom: 1.5rem;">Latest WhatsApp Business Guides</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+          ${blogArticles.map((article) => `
+            <article style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1rem; padding: 1.5rem;">
+              <p style="font-size: 0.75rem; font-weight: 700; color: #008f83; text-transform: uppercase; letter-spacing: 0.06em;">${article.category} · ${article.readingTime}</p>
+              <h2 style="font-size: 1.2rem; line-height: 1.4; font-weight: 700; color: #0f2b5c; margin: 0.75rem 0;">
+                <a href="${article.path}" style="color: inherit; text-decoration: none;">${article.title}</a>
+              </h2>
+              <p style="font-size: 0.9rem; color: #475569; line-height: 1.6;">${article.description}</p>
+              <a href="${article.path}" style="display: inline-block; margin-top: 1rem; color: #008f83; font-weight: 600;">Read guide →</a>
+            </article>
+          `).join('')}
+        </div>
+        <p style="margin-top: 2rem; color: #475569;">Explore the <a href="/products/whatnexis" style="color: #008f83; font-weight: 600;">WhatNexis WhatsApp Business API and automation platform</a>.</p>
       </section>
     `
   } else if (path === '/products/whatnexis/pricing') {

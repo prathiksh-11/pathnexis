@@ -6,6 +6,7 @@ import { whatnexisAiChatbotSeo } from './pages/whatnexis-ai-chatbot.js'
 import { whatnexisCrmSeo } from './pages/whatnexis-crm.js'
 import { whatnexisReviewsSeo } from './pages/whatnexis-reviews.js'
 import { whatnexisPricingSeo } from './pages/whatnexis-pricing.js'
+import { blogIndexSeo } from './pages/blog-index.js'
 import {
   whatsappBusinessApiIndiaSeo,
   whatsappApiPricingSeo,
@@ -38,6 +39,7 @@ export const staticRoutes = {
   '/innovation-lab': innovationLabSeo,
   '/privacy-policy': privacyPolicySeo,
   '/terms': termsSeo,
+  '/blog': blogIndexSeo,
 
   // WhatNexis Suite Hub & Canonical Aliases
   '/products/whatnexis': whatnexisHubSeo,
@@ -206,6 +208,7 @@ export function getAllIndexableRoutes() {
 
     // Full-Length Pillar Blog Guides
     { path: '/blog/whatsapp-business-app-vs-api', priority: 0.8, changefreq: 'monthly' },
+    { path: '/blog', priority: 0.85, changefreq: 'weekly' },
     { path: '/blog/how-to-get-whatsapp-green-tick-india', priority: 0.8, changefreq: 'monthly' },
     { path: '/blog/how-to-get-whatsapp-template-approved', priority: 0.8, changefreq: 'monthly' },
 

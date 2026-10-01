@@ -29,7 +29,7 @@ const links = [
   { label: 'Capabilities', href: '/capabilities', id: 'capabilities', isRoute: true },
   { label: 'Industries', href: '/#industries', id: 'industries' },
   { label: 'Innovation', href: '/innovation-lab', id: 'innovation', isRoute: true },
-  { label: 'Insights', href: '/#insights', id: 'insights' },
+  { label: 'Blog', href: '/blog', id: 'blog', isRoute: true },
   { label: 'Careers', href: '/careers/opportunities', id: 'careers', isRoute: true },
   { label: 'Contact', href: '/contact', id: 'contact', isRoute: true },
 ]

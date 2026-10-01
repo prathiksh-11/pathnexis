@@ -73,13 +73,13 @@ export default function BlogWhatsAppTemplatesPage() {
             <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200">
               <h3 className="text-base font-bold text-navy mb-2">Marketing</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Promotional sales, festive discounts, abandoned cart reminders, and newsletters. Billed at Meta Marketing rate (~₹0.88–₹0.95 in India) [NEEDS SOURCE].
+                Promotional sales, product announcements, and offers. Meta classifies templates and applies current rates based on message category and recipient market; check the <a href="https://developers.facebook.com/docs/whatsapp/pricing" target="_blank" rel="noreferrer">official pricing page</a> for current charges.
               </p>
             </div>
             <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200">
               <h3 className="text-base font-bold text-navy mb-2">Utility</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Transactional alerts: order confirmations, shipping updates, receipts. <strong>Zero promotional language allowed</strong>. Billed at ~₹0.145–₹0.20 [NEEDS SOURCE].
+                Transactional updates such as order confirmations and shipping notifications. Keep the content consistent with the template category and current <a href="https://developers.facebook.com/docs/whatsapp/pricing" target="_blank" rel="noreferrer">Meta pricing rules</a>.
               </p>
             </div>
             <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200">

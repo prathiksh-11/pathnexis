@@ -62,53 +62,51 @@ export default function BlogWhatsAppGreenTickPage() {
             When a customer receives a message on WhatsApp from an unfamiliar number, their immediate reaction is skepticism. In an era where spam calls and financial scams are common, Indian consumers are cautious about clicking links or transferring funds.
           </p>
           <p>
-            Now imagine your customer receives a WhatsApp message displaying your official company name alongside a prominent green checkmark badge, instead of an unformatted 10-digit mobile number. That green checkmark is the <strong>WhatsApp Green Tick</strong> (officially termed by Meta as an <strong>Official Business Account</strong> or OBA).
+            The badge people often call the <strong>WhatsApp green tick</strong> is associated with a verified business account. Meta now describes different verification experiences, including Official Business Accounts and subscription products, so the badge and application path can depend on the account and product available to you.
           </p>
 
           <h2 className="text-2xl font-bold text-navy mt-10 mb-4">1. What is the WhatsApp Green Tick?</h2>
           <p>
-            By default, when a business uses the official WhatsApp Business API, the recipient sees the phone number at the top of the chat header unless they save the contact. When Meta grants an Official Business Account (OBA):
+            WhatsApp distinguishes regular business accounts from accounts with a verified badge. A badge can help customers recognize an authenticated business, but it is not a ranking signal or a guarantee that customers will trust or message the business.
           </p>
           <ul className="list-disc pl-6 space-y-2">
-            <li>Your verified brand name appears at the top of the chat header even if the customer has never saved your number.</li>
-            <li>A distinctive green checkmark badge appears beside your name.</li>
-            <li>Your official business details are highlighted with elevated trust signals.</li>
+            <li>Meta verifies the account using information or documents, depending on the verification product.</li>
+            <li>Badge appearance and availability may differ by account and can change over time.</li>
+            <li>Verification does not replace clear business details, customer support, or safe messaging practices.</li>
           </ul>
           <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-sm">
-            <strong>Important Note:</strong> The green tick is <em>only available on the official WhatsApp Business API</em>. It is not available on the free personal or standard business phone app.
+            <strong>Important:</strong> Meta offers different verification options. Check the current <a href="https://faq.whatsapp.com/794517045178057" target="_blank" rel="noreferrer">WhatsApp Help Center guidance on verified business accounts</a> to confirm which option applies to your account.
           </div>
 
-          <h2 className="text-2xl font-bold text-navy mt-10 mb-4">2. The 4 Eligibility Criteria for Indian Businesses</h2>
+          <h2 className="text-2xl font-bold text-navy mt-10 mb-4">2. Check Which Verification Option You Can Use</h2>
           <p>
-            Meta maintains strict verification standards to ensure the green tick remains a symbol of authentic, notable organizations:
+            Eligibility depends on the verification product and the account. For an Official Business Account, Meta may consider authenticity and notability; Meta Verified is a separate subscription product with its own availability and requirements. Review Meta’s current guidance before paying a provider or preparing an application.
           </p>
           <ol className="list-decimal pl-6 space-y-3">
-            <li><strong>Active WhatsApp Business API Account:</strong> You must be registered on the official Meta Cloud API through an approved provider like WhatNexis.</li>
-            <li><strong>Verified Meta Business Manager:</strong> Submit official Indian corporate documents (GST Registration Certificate, Udyam MSME Certificate, or MCA Incorporation Certificate) and a matching utility bill or bank statement.</li>
-            <li><strong>2-Step Verification &amp; Quality Rating:</strong> Your phone number must have 2-Step Verification enabled and maintain a healthy &quot;Green&quot; quality rating with low customer block rates.</li>
-            <li><strong>Brand Notability &amp; Media Presence [NEEDS SOURCE]:</strong> Meta requires evidence that your brand is widely recognized. This includes organic news coverage from reputable publications (e.g., YourStory, Economic Times, LiveMint). Paid advertorials or PR distribution wires are explicitly excluded by Meta [NEEDS SOURCE].</li>
+            <li>Use a WhatsApp account and business profile that comply with the applicable WhatsApp terms and policies.</li>
+            <li>Keep your business name and supporting information accurate and consistent with your official records.</li>
+            <li>Check the current requirements shown in your WhatsApp or Meta Business settings. Do not assume that meeting one product’s criteria automatically qualifies you for another verification option.</li>
           </ol>
 
           <h2 className="text-2xl font-bold text-navy mt-10 mb-4">3. Step-by-Step Application Walkthrough</h2>
           <p>
-            Applying for the green tick is simple once your prerequisites are ready:
+            The available application flow can differ. Start with Meta’s own account settings and help documentation:
           </p>
           <ol className="list-decimal pl-6 space-y-2">
-            <li>Log in to <code>business.facebook.com</code> and confirm your <strong>Business Verification</strong> status is green.</li>
-            <li>Gather 3 to 5 non-paid organic news coverage links showcasing your achievements, funding, or product launches.</li>
-            <li>Go to <strong>WhatsApp Manager</strong> &gt; <strong>Phone Numbers</strong> &gt; <strong>Profile</strong>.</li>
-            <li>Click <strong>Submit Request</strong> under the Official Business Account section.</li>
-            <li>Paste your website URL, operating country (India), and news citations, then submit. Meta reviews submissions within 2 to 4 business days.</li>
+            <li>Open your WhatsApp or Meta Business account settings and locate the verification options available to your account.</li>
+            <li>Read the eligibility criteria for the specific option, such as an Official Business Account or Meta Verified.</li>
+            <li>Submit the requested business information and documents directly through Meta’s displayed application flow.</li>
+            <li>Wait for Meta’s decision and follow the status or appeal instructions shown in your account.</li>
           </ol>
 
           <h2 className="text-2xl font-bold text-navy mt-10 mb-4">4. What If Your Application is Rejected?</h2>
           <p>
-            A green tick rejection <strong>does not affect your ability to use the WhatsApp API</strong>. Your account continues to send broadcasts, run chatbots, and handle chats normally. Meta enforces a 30-day cooldown before you can re-apply. During this time, focus on earning genuine media mentions and driving branded search volume.
+            A declined verification request does not automatically mean your business messaging account is disabled. Check the reason and any reapplication timing shown by Meta, correct the issue, and use the official review process. Keep following WhatsApp messaging policies while you wait.
           </p>
 
           <h2 className="text-2xl font-bold text-navy mt-10 mb-4">5. Beware of &quot;Guaranteed Green Tick&quot; Scams</h2>
           <p>
-            Many agencies in India claim they can &quot;guarantee a WhatsApp green tick in 24 hours&quot; for fees ranging from ₹15,000 to ₹50,000. <strong>Meta does not sell the green tick.</strong> No third-party agency has the power to grant approval; it is evaluated strictly by Meta&apos;s internal trust and safety team. WhatNexis assists you through the submission process at zero extra surcharge.
+            Be cautious of anyone promising approval or a fixed decision time. A provider can help prepare information or guide setup, but Meta controls its own review decisions. Also distinguish a paid Meta Verified subscription from an Official Business Account review; they are different verification options. Confirm current pricing and eligibility with Meta before purchasing.
           </p>
         </motion.div>
 

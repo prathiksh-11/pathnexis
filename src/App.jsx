@@ -18,6 +18,7 @@ import WhatNexisProductPage from './pages/WhatNexisProductPage'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
 import CapabilitiesIndexPage from './pages/CapabilitiesIndexPage'
+import BlogIndexPage from './pages/BlogIndexPage'
 
 // Dedicated WhatNexis Feature Landing Pages
 import WhatsAppAutomationPage from './pages/whatnexis/WhatsAppAutomationPage'
@@ -90,6 +91,7 @@ function AppLayout() {
           <Route path="/wati-alternatives-india" element={<WatiAlternativesPage />} />
 
           {/* Pillar Blog Guides (1,200+ Words) */}
+          <Route path="/blog" element={<BlogIndexPage />} />
           <Route path="/blog/whatsapp-business-app-vs-api" element={<BlogWhatsAppAppVsApiPage />} />
           <Route path="/blog/how-to-get-whatsapp-green-tick-india" element={<BlogWhatsAppGreenTickPage />} />
           <Route path="/blog/how-to-get-whatsapp-template-approved" element={<BlogWhatsAppTemplatesPage />} />

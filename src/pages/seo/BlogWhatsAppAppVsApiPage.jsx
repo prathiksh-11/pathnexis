@@ -58,7 +58,7 @@ export default function BlogWhatsAppAppVsApiPage() {
       <main className="py-16 md:py-24 max-w-4xl mx-auto px-6">
         <motion.div {...fadeUp} className="bg-white p-8 sm:p-12 rounded-3xl border border-slate-200 shadow-sm prose prose-slate max-w-none text-slate-700 leading-relaxed">
           <p className="text-lg font-medium text-navy leading-relaxed">
-            If you run a business in India today, WhatsApp is where your customers spend their time. With over 500 million active users nationwide [NEEDS SOURCE], WhatsApp has transitioned from a personal messaging convenience into the backbone of Indian commerce. However, business owners constantly encounter a critical question: <strong>Should you stick with the free WhatsApp Business App, or upgrade to the official WhatsApp Business API?</strong>
+            If your customers use WhatsApp, choosing between the WhatsApp Business App and the WhatsApp Business Platform can affect how your team handles conversations. The right option depends on your message volume, support workflow, and need for integrations. <strong>Should you stick with the free WhatsApp Business App, or use the official WhatsApp Business Platform?</strong>
           </p>
 
           <h2 className="text-2xl font-bold text-navy mt-10 mb-4">1. What is the Standard WhatsApp Business App?</h2>
@@ -138,10 +138,10 @@ export default function BlogWhatsAppAppVsApiPage() {
           </p>
           <ol className="list-decimal pl-6 space-y-2">
             <li><strong>WhatNexis Subscription:</strong> Starting at ₹1,499/mo plus 18% GST (includes multi-agent workspace, chatbot flows, and local Bengaluru support).</li>
-            <li><strong>Meta Network Charges:</strong> Marketing templates (~₹0.88–₹0.95/message) [NEEDS SOURCE], Utility templates (~₹0.145–₹0.20/message) [NEEDS SOURCE], and free inbound customer support messages within 24 hours.</li>
+            <li><strong>Meta message charges:</strong> Rates depend on message category, recipient market, and Meta’s current pricing. Check <a href="https://developers.facebook.com/docs/whatsapp/pricing" target="_blank" rel="noreferrer">Meta’s current WhatsApp Business Platform pricing</a> before estimating campaign cost.</li>
           </ol>
           <p>
-            For example, sending 5,000 festive promotional messages costs approximately ₹4,500 in Meta fees. If this campaign generates 100 sales with an average order value of ₹1,200, you generate ₹1,20,000 in revenue at a 25x ROI.
+            Estimate campaign cost from the current Meta rate for your recipients and message category, then compare it with your own conversion rate and order value. Results vary by audience, offer, and campaign execution.
           </p>
 
           <h2 className="text-2xl font-bold text-navy mt-10 mb-4">5. When Should Your Business Upgrade?</h2>
