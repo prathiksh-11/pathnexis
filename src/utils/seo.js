@@ -1,9 +1,9 @@
-import { SITE, absoluteImage, absoluteUrl } from '../config/site'
-import { PAGE_SEO } from '../config/seo'
-import { capabilityList } from '../data/capabilities'
-import { insightCategories, insightArticles } from '../data/insights'
-import { jobs } from '../data/jobs'
-import { whatnexisData } from '../data/products/whatnexis'
+import { SITE, absoluteImage, absoluteUrl } from '../config/site.js'
+import { PAGE_SEO } from '../config/seo.js'
+import { capabilityList } from '../data/capabilities/index.js'
+import { insightCategories, insightArticles } from '../data/insights/index.js'
+import { jobs } from '../data/jobs.js'
+import { whatnexisData } from '../data/products/whatnexis.js'
 
 export function buildTitle(pageTitle) {
   if (!pageTitle) return `${SITE.name} | ${SITE.tagline}`

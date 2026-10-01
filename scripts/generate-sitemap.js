@@ -1,4 +1,4 @@
-import { writeFileSync } from 'node:fs'
+import { writeFileSync, existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 
@@ -100,4 +100,8 @@ ${urls}
 `
 
 writeFileSync(join(root, 'public', 'sitemap.xml'), xml)
+const distDir = join(root, 'dist')
+if (existsSync(distDir)) {
+  writeFileSync(join(distDir, 'sitemap.xml'), xml)
+}
 console.log(`Sitemap generated with ${paths.length} URLs`)

@@ -16,7 +16,7 @@ const trustBadges = [
   { icon: Globe2, label: 'Global Vision' },
 ]
 
-const words = ['Building', 'Intelligent', 'Futures']
+const words = ['Pathnexis', 'Builds', 'Intelligent', 'Futures']
 
 const stats = [
   { num: '3', label: 'Core Capabilities', icon: Brain },
