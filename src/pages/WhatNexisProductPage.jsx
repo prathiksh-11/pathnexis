@@ -1,8 +1,7 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  ArrowLeft,
   ArrowRight,
   CheckCircle2,
   ExternalLink,
@@ -21,8 +20,6 @@ import {
   Zap,
   TrendingUp,
   Clock,
-  HelpCircle,
-  BarChart3,
   BadgeCheck,
 } from 'lucide-react'
 import { GridOverlay } from '../components/ui/Effects'
@@ -30,6 +27,15 @@ import WhatsAppIcon from '../components/icons/WhatsAppIcon'
 import { InstagramIcon } from '../components/icons/SocialIcons'
 import { whatnexisData } from '../data/products/whatnexis'
 import { SITE } from '../config/site'
+import BreadcrumbBar from '../components/BreadcrumbBar'
+import InternalLinksWidget from '../components/InternalLinksWidget'
+
+const channelRoutes = {
+  whatsapp: '/products/whatnexis/whatsapp-automation',
+  instagram: '/products/whatnexis/instagram-automation',
+  reviews: '/products/whatnexis/google-reviews',
+  'ai-chatbot': '/products/whatnexis/ai-chatbot',
+}
 
 const channelIcons = {
   MessageSquare: MessageSquare,
@@ -56,16 +62,25 @@ const fadeUp = {
 
 export default function WhatNexisProductPage() {
   const { hash } = useLocation()
-  const [activeChannelId, setActiveChannelId] = useState('whatsapp')
-  const [openFaqIndex, setOpenFaqIndex] = useState(0)
-  const [messageVolume, setMessageVolume] = useState(15000)
+  const [prevHash, setPrevHash] = useState(hash)
+  const [activeChannelId, setActiveChannelId] = useState(() => {
+    if (hash === '#whatsapp-automation') return 'whatsapp'
+    if (hash === '#instagram-automation') return 'instagram'
+    if (hash === '#reviews-automation') return 'reviews'
+    if (hash === '#ai-chatbot') return 'ai-chatbot'
+    return 'whatsapp'
+  })
 
-  useEffect(() => {
+  if (prevHash !== hash) {
+    setPrevHash(hash)
     if (hash === '#whatsapp-automation') setActiveChannelId('whatsapp')
     else if (hash === '#instagram-automation') setActiveChannelId('instagram')
     else if (hash === '#reviews-automation') setActiveChannelId('reviews')
     else if (hash === '#ai-chatbot') setActiveChannelId('ai-chatbot')
-  }, [hash])
+  }
+
+  const [openFaqIndex, setOpenFaqIndex] = useState(0)
+  const [messageVolume, setMessageVolume] = useState(15000)
 
   const activeChannel = useMemo(
     () => whatnexisData.channels.find((c) => c.id === activeChannelId) || whatnexisData.channels[0],
@@ -98,16 +113,14 @@ export default function WhatNexisProductPage() {
         <GridOverlay />
 
         <div className="relative max-w-7xl mx-auto px-6 w-full">
-          {/* Breadcrumb Navigation */}
-          <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-xs font-medium text-white/50">
-            <Link to="/" className="hover:text-teal-light transition-colors">
-              Home
-            </Link>
-            <span>/</span>
-            <span className="text-white/70">Products</span>
-            <span>/</span>
-            <span className="text-teal-light font-semibold">WhatNexis</span>
-          </nav>
+          <BreadcrumbBar
+            items={[
+              { name: 'Home', url: '/' },
+              { name: 'Products', url: '/products/whatnexis' },
+              { name: 'WhatNexis', url: '/products/whatnexis' },
+            ]}
+            className="mb-6 text-white/60"
+          />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <motion.div {...fadeUp} className="lg:col-span-7">
@@ -365,7 +378,15 @@ export default function WhatNexisProductPage() {
                     ))}
                   </ul>
 
-                  <div className="flex flex-wrap gap-4">
+                  <div className="flex flex-wrap gap-4 items-center">
+                    <Link
+                      to={channelRoutes[activeChannel.id] || '/products/whatnexis'}
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-teal text-white text-sm font-semibold rounded-full hover:bg-teal-dark shadow-md shadow-teal/20 transition-all hover:scale-[1.02]"
+                    >
+                      <span>Explore {activeChannel.name} Deep Dive</span>
+                      <ArrowRight size={15} />
+                    </Link>
+
                     <a
                       href={`${SITE.whatsapp}?text=${encodeURIComponent(
                         `Hi Pathnexis, I want to learn more about ${activeChannel.name} on WhatNexis.`
@@ -374,8 +395,8 @@ export default function WhatNexisProductPage() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 px-6 py-3 bg-navy text-white text-sm font-semibold rounded-full hover:bg-navy-light transition-colors"
                     >
-                      <span>Get Started with {activeChannel.name}</span>
-                      <ArrowRight size={15} />
+                      <span>Get Started via WhatsApp</span>
+                      <WhatsAppIcon size={16} />
                     </a>
                   </div>
                 </div>
@@ -825,6 +846,11 @@ export default function WhatNexisProductPage() {
           </div>
         </div>
       </section>
+
+      {/* Internal Linking Network */}
+      <div className="max-w-7xl mx-auto px-6">
+        <InternalLinksWidget title="Explore Dedicated WhatNexis Automation Channels &amp; Pricing" />
+      </div>
 
       {/* 10. HIGH-CONVERTING BOTTOM CTA BANNER */}
       <section className="py-20 md:py-24 bg-navy-dark text-white relative overflow-hidden">

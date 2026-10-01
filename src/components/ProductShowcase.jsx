@@ -7,13 +7,8 @@ import {
   ArrowRight,
   CheckCircle2,
   Sparkles,
-  Zap,
-  ShieldCheck,
-  TrendingUp,
 } from 'lucide-react'
 import { InstagramIcon } from './icons/SocialIcons'
-import WhatsAppIcon from './icons/WhatsAppIcon'
-import { SITE } from '../config/site'
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -30,7 +25,7 @@ const channels = [
     badge: '98% Open Rate',
     color: '#25D366',
     icon: MessageSquare,
-    link: '/products/whatnexis#whatsapp-automation',
+    link: '/products/whatnexis/whatsapp-automation',
     anchorText: 'Explore WhatsApp Business API features',
   },
   {
@@ -40,7 +35,7 @@ const channels = [
     badge: 'Instant DM Triggers',
     color: '#E1306C',
     icon: InstagramIcon,
-    link: '/products/whatnexis#instagram-automation',
+    link: '/products/whatnexis/instagram-automation',
     anchorText: 'See Instagram DM automation capabilities',
   },
   {
@@ -50,18 +45,18 @@ const channels = [
     badge: '5-Star Autopilot',
     color: '#F4B400',
     icon: Star,
-    link: '/products/whatnexis#reviews-automation',
+    link: '/products/whatnexis/google-reviews',
     anchorText: 'Automate Google reviews via WhatsApp',
   },
   {
-    title: 'AI Chatbots & CRM',
-    subtitle: 'Conversational Commerce',
+    title: 'AI Chatbots & Flows',
+    subtitle: 'Conversational AI',
     desc: 'Train generative AI on your catalogs and PDFs. Collect leads, manage multi-agent inboxes, and accept UPI in chat.',
     badge: '24/7 Autonomous',
     color: '#8A2BE2',
     icon: Bot,
-    link: '/products/whatnexis#ai-chatbot',
-    anchorText: 'Discover AI chatbots & CRM features',
+    link: '/products/whatnexis/ai-chatbot',
+    anchorText: 'Discover AI chatbots & no-code flows',
   },
 ]
 
@@ -161,7 +156,7 @@ export default function ProductShowcase() {
                 </Link>
 
                 <Link
-                  to="/products/whatnexis#pricing"
+                  to="/products/whatnexis/pricing"
                   className="inline-flex items-center gap-2 px-6 py-3.5 bg-white/10 hover:bg-white/15 text-white font-medium rounded-full text-sm border border-white/20 transition-all"
                 >
                   <span>View Transparent INR Pricing</span>
