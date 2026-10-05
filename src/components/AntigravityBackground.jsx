@@ -40,7 +40,7 @@ export default function AntigravityBackground() {
   const frameRef = useRef(0)
   const runningRef = useRef(false)
   const shakeRef = useRef({ hits: [], lastAngle: null })
-  const scrollRef = useRef({ y: 0, time: Date.now() })
+  const scrollRef = useRef({ y: 0, time: 0 })
 
   useEffect(() => {
     const canvas = canvasRef.current

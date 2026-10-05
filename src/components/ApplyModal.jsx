@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Send, CheckCircle2, Briefcase, Upload, FileText, Trash2 } from 'lucide-react'
 
@@ -26,25 +26,27 @@ export default function ApplyModal({ job, onClose }) {
   const [submitted, setSubmitted] = useState(false)
   const fileInputRef = useRef(null)
 
+  const handleClose = useCallback(() => {
+    setForm(initialForm)
+    setResume(null)
+    setResumeError('')
+    setSubmitted(false)
+    onClose?.()
+  }, [onClose])
+
   useEffect(() => {
-    if (!job) {
-      setForm(initialForm)
-      setResume(null)
-      setResumeError('')
-      setSubmitted(false)
-      return
-    }
+    if (!job) return
 
     document.body.style.overflow = 'hidden'
     const onKey = (e) => {
-      if (e.key === 'Escape') onClose()
+      if (e.key === 'Escape') handleClose()
     }
     window.addEventListener('keydown', onKey)
     return () => {
       document.body.style.overflow = ''
       window.removeEventListener('keydown', onKey)
     }
-  }, [job, onClose])
+  }, [job, handleClose])
 
   const update = (field) => (e) => setForm((prev) => ({ ...prev, [field]: e.target.value }))
 

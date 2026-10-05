@@ -8,7 +8,6 @@ import {
   Layers,
   Lightbulb,
   FileText,
-  Sparkles,
 } from 'lucide-react'
 
 export const explorationAreas = [

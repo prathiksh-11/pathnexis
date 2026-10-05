@@ -72,7 +72,7 @@ export default function Footer() {
 
           {/* Col 2: WhatNexis Platform */}
           <div>
-            <h4 className="font-semibold text-teal-light text-sm mb-4 uppercase tracking-wider">WhatNexis Platform</h4>
+            <h3 className="font-semibold text-teal-light text-sm mb-4 uppercase tracking-wider">WhatNexis Platform</h3>
             <ul className="space-y-2">
               {whatnexisLinks.map((link) => (
                 <li key={link.href}>
@@ -89,7 +89,7 @@ export default function Footer() {
 
           {/* Col 3: Quick Links */}
           <div>
-            <h4 className="font-semibold text-teal-light text-sm mb-4 uppercase tracking-wider">Company</h4>
+            <h3 className="font-semibold text-teal-light text-sm mb-4 uppercase tracking-wider">Company</h3>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.href}>
@@ -115,7 +115,7 @@ export default function Footer() {
 
           {/* Col 4: Contact */}
           <div>
-            <h4 className="font-semibold text-teal-light text-sm mb-4 uppercase tracking-wider">Contact &amp; Support</h4>
+            <h3 className="font-semibold text-teal-light text-sm mb-4 uppercase tracking-wider">Contact &amp; Support</h3>
             <ul className="space-y-3">
               {contactItems.map((item) => {
                 const Icon = item.icon
@@ -143,7 +143,7 @@ export default function Footer() {
 
           {/* Col 5: Legal & Address */}
           <div>
-            <h4 className="font-semibold text-teal-light text-sm mb-4 uppercase tracking-wider">Legal &amp; Office</h4>
+            <h3 className="font-semibold text-teal-light text-sm mb-4 uppercase tracking-wider">Legal &amp; Office</h3>
             <ul className="space-y-2 mb-6">
               {legalLinks.map((link) => (
                 <li key={link.href}>

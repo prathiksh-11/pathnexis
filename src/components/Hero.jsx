@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowRight, Sparkles, Brain, GraduationCap, TrendingUp, Shield, Zap, Globe2, Building2, Infinity } from 'lucide-react'
+import { ArrowRight, Sparkles, Brain, GraduationCap, TrendingUp, Shield, Zap, Globe2, Building2, Infinity as InfinityIcon } from 'lucide-react'
 import { FloatingOrbs, GridOverlay } from './ui/Effects'
 import WaveDivider from './ui/WaveDivider'
 import AntigravityBackground from './AntigravityBackground'
@@ -21,7 +21,7 @@ const words = ['Pathnexis', 'Builds', 'Intelligent', 'Futures']
 const stats = [
   { num: '3', label: 'Core Capabilities', icon: Brain },
   { num: '7+', label: 'Industries Served', icon: Building2 },
-  { num: '∞', label: 'Possibilities Ahead', icon: Infinity },
+  { num: '∞', label: 'Possibilities Ahead', icon: InfinityIcon },
 ]
 
 function AuroraGlow() {

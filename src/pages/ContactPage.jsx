@@ -174,7 +174,7 @@ export default function ContactPage() {
 
               {/* Social Links */}
               <div>
-                <h4 className="text-xs uppercase font-bold tracking-wider text-slate mb-3">Connect on Social Channels</h4>
+                <h3 className="text-xs uppercase font-bold tracking-wider text-slate mb-3">Connect on Social Channels</h3>
                 <SocialLinks />
               </div>
             </div>

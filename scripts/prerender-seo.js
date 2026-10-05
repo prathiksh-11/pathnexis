@@ -295,6 +295,14 @@ function renderHtml(pathname, seo) {
     /<meta property="og:image" content=".*?" \/>/s,
     `<meta property="og:image" content="${seo.ogImage}" />`
   )
+  html = html.replace(
+    /<meta property="og:image:secure_url" content=".*?" \/>/s,
+    `<meta property="og:image:secure_url" content="${seo.ogImage}" />`
+  )
+  html = html.replace(
+    /<meta property="og:image:alt" content=".*?" \/>/s,
+    `<meta property="og:image:alt" content="${(seo.ogTitle || seo.title).replace(/"/g, '&quot;')}" />`
+  )
 
   // Twitter Cards
   html = html.replace(
@@ -308,6 +316,10 @@ function renderHtml(pathname, seo) {
   html = html.replace(
     /<meta name="twitter:image" content=".*?" \/>/s,
     `<meta name="twitter:image" content="${seo.twitterImage || seo.ogImage}" />`
+  )
+  html = html.replace(
+    /<meta name="twitter:image:alt" content=".*?" \/>/s,
+    `<meta name="twitter:image:alt" content="${(seo.twitterTitle || seo.title).replace(/"/g, '&quot;')}" />`
   )
 
   // JSON-LD Structured Data
@@ -330,6 +342,7 @@ const routesToPrerender = [
   ...allRoutes.map((r) => r.path),
   '/whatnexis',
   '/products',
+  '/careers',
 ]
 
 let count = 0

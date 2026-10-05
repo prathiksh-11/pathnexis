@@ -4,7 +4,6 @@ import {
   Brain,
   GraduationCap,
   TrendingUp,
-  MessageSquare,
   ArrowRight,
   Sparkles,
   CheckCircle,

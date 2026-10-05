@@ -44,9 +44,9 @@ export default function CareerPillarSections() {
           </div>
 
           <div className="p-8 md:p-10 lg:[direction:ltr] flex flex-col justify-center">
-            <h4 className="text-xs font-semibold tracking-[0.2em] uppercase text-teal mb-5">
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-teal mb-5">
               {pillar.highlightsTitle}
-            </h4>
+            </p>
             <ul className="space-y-3">
               {pillar.highlights.map((item) => (
                 <li key={item} className="flex items-start gap-3">
